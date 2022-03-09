@@ -6,12 +6,12 @@
         <div class="carousel-item active ">
           <div
             class="card-img-top"
-            style="height: 80vh; background-image: url(https://images.unsplash.com/photo-1519974719765-e6559eac2575?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80);
+            style="height: 80vh; background-image: url(https://images.unsplash.com/photo-1550226891-ef816aed4a98?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80);
           background-size: cover;
-          background-position:bottom center;
+          background-position:center center;
           "
           ></div>
-          <div class="carousel-caption  d-md-block pb-5">
+          <div class="carousel-caption  d-md-block pb-10">
             <h1 style=" text-shadow: black 0em 0em 0.1em " class="indexBannerText mb-3">
               讓你的居家生活風格更加獨特
             </h1>
@@ -20,7 +20,7 @@
             </p>
 
             <router-link to="/products">
-              <button type="button" class="btn btn-light  mt-2 py-3 px-5">
+              <button type="button" class="btn btn-outline-light rounded-pill mt-2 py-3 px-5">
                 SHOP NOW
               </button>
             </router-link>
@@ -28,77 +28,7 @@
         </div>
       </div>
     </div>
-
-    <div class="container">
-      <div class="row mt-5">
-        <div class="col-md-4 mt-md-4">
-          <div class="card border-0 mb-4">
-            <img
-              src="https://images.unsplash.com/photo-1533090368676-1fd25485db88?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80"
-              class="card-img-top rounded-0"
-              alt="..."
-            />
-            <div class="card-body text-center">
-              <h4 class="mt-3">時尚簡約桌櫃組</h4>
-              <p class="card-text text-secondary mb-0">
-                簡約風格打造你的工作環境，讓生活更簡單！
-              </p>
-              <router-link to="/products">
-                <button type="button" class="btn btn-outline-secondary  mt-4 py-2 px-5 stretched-link">
-                  立即前往
-                </button>
-              </router-link>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mt-md-4">
-          <div class="card border-0 mb-4">
-            <img
-              src="https://images.unsplash.com/photo-1601084881623-cdf9a8ea242c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
-              class="card-img-top rounded-0"
-              alt="..."
-            />
-            <div class="card-body text-center">
-              <h4 class="mt-3">客廳居家沙發</h4>
-
-              <p class="card-text text-secondary mb-0">
-                舒適色調與多款式選擇，讓家更有溫度！
-              </p>
-
-              <router-link to="/products">
-                <button type="button" class="btn btn-outline-secondary  mt-4 py-2 px-5 stretched-link">
-                  立即前往
-                </button>
-              </router-link>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mt-md-4">
-          <div class="card border-0 mb-4">
-            <img
-              src="https://images.unsplash.com/photo-1465224414649-ceb7f1db3999?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
-              class="card-img-top rounded-0"
-              alt="..."
-            />
-            <div class="card-body text-center">
-              <h4 class="mt-3">舒適好坐椅子</h4>
-
-              <p class="card-text text-secondary mb-0">
-                一張好的椅子，就能讓你享受一個人的時光。
-              </p>
-
-              <router-link to="/products">
-                <button type="button" class="btn btn-outline-secondary  mt-4 py-2 px-5 stretched-link">
-                  立即前往
-                </button>
-              </router-link>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="bg-light mt-4 mb-4 p-4 ">
+    <div class="bg-light mb-4 p-4 ">
       <div class="container">
         <div id="carouselExampleControls" class="slide" data-ride="carousel">
           <div class="carousel-inner">
@@ -163,8 +93,76 @@
         </div>
       </div>
     </div>
-    <div class="container my-7 mb-4">
-      <div class="row">
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-md-4 mt-4 mt-md-0">
+          <div class="card border-0 mb-4 mt-md-0">
+            <img
+              src="https://images.unsplash.com/photo-1533090368676-1fd25485db88?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80"
+              class="card-img-top rounded-0"
+              alt="..."
+            />
+            <div class="card-body text-center">
+              <h4 class="mt-3">時尚簡約桌櫃組</h4>
+              <p class="card-text text-secondary mb-0">
+                簡約風格打造你的工作環境，讓生活更簡單！
+              </p>
+              <router-link to="/products">
+                <button type="button" class="btn btn-outline-warm  rounded-pill mt-4 py-2 px-5 stretched-link">
+                  立即前往
+                </button>
+              </router-link>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mt-4 mt-md-0">
+          <div class="card border-0 mb-4 mb-4 mt-md-0">
+            <img
+              src="https://images.unsplash.com/photo-1601084881623-cdf9a8ea242c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
+              class="card-img-top rounded-0"
+              alt="..."
+            />
+            <div class="card-body text-center">
+              <h4 class="mt-3">客廳居家沙發</h4>
+
+              <p class="card-text text-secondary mb-0">
+                舒適色調與多款式選擇，讓家更有溫度！
+              </p>
+
+              <router-link to="/products">
+                <button type="button" class="btn btn-outline-warm  rounded-pill mt-4 py-2 px-5 stretched-link">
+                  立即前往
+                </button>
+              </router-link>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mt-4 mt-md-0">
+          <div class="card border-0 mb-4 mb-4 mt-md-0">
+            <img
+              src="https://images.unsplash.com/photo-1465224414649-ceb7f1db3999?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
+              class="card-img-top rounded-0"
+              alt="..."
+            />
+            <div class="card-body text-center">
+              <h4 class="mt-3">舒適好坐椅子</h4>
+
+              <p class="card-text text-secondary mb-0">
+                一張好的椅子，就能讓你享受一個人的時光。
+              </p>
+
+              <router-link to="/products">
+                <button type="button" class="btn btn-outline-warm  rounded-pill mt-4 py-2 px-5 stretched-link">
+                  立即前往
+                </button>
+              </router-link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container my-7">
+      <div class="row bg-light">
         <div class="col-md-6 g-0">
           <img
             src="https://images.unsplash.com/photo-1589362281138-e3f7ebe47f1a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
@@ -172,7 +170,7 @@
             class="img-fluid"
           />
         </div>
-        <div class="col-md-4 m-auto text-center">
+        <div class="col-md-4 m-auto text-center bg-light">
           <h4 class="mt-4">嚴選家居</h4>
           <p class="text-secondary">
             收納櫃組、客廳家俱到寢具一應俱全。 <br />
@@ -180,7 +178,7 @@
           </p>
         </div>
       </div>
-      <div class="row flex-row-reverse justify-content-between ">
+      <div class="row bg-light flex-row-reverse justify-content-between ">
         <div class="col-md-6 g-0">
           <img
             src="https://images.unsplash.com/photo-1571570703598-39eb580a0329?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80"
@@ -193,6 +191,22 @@
           <p class="text-secondary">
             WFH 盛行，選擇最適合你風格的工作環境，<br />
             搭配家中擺設與家俱風格，增添生活樂趣。
+          </p>
+        </div>
+      </div>
+      <div class="row bg-light">
+        <div class="col-md-6 g-0">
+          <img
+            src="https://images.unsplash.com/photo-1589362281138-e3f7ebe47f1a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
+            alt=""
+            class="img-fluid"
+          />
+        </div>
+        <div class="col-md-4 m-auto text-center bg-light">
+          <h4 class="mt-4">嚴選家居</h4>
+          <p class="text-secondary">
+            收納櫃組、客廳家俱到寢具一應俱全。 <br />
+            WFH居家必備，打造屬於自己的角落。
           </p>
         </div>
       </div>

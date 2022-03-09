@@ -86,7 +86,8 @@ $theme-colors: (
   "warning":    #FFE33F, // $warning,
   "danger":     #EE847D, // $danger,
   "light":      $light,
-  "dark":       $dark
+  "dark":       $dark,
+  "warm":     #DFC389,
 ) !default;
 // scss-docs-end theme-colors-map
 
@@ -338,7 +339,7 @@ $escaped-characters: (
 // Quickly modify global styling by enabling or disabling optional features.
 
 $enable-caret:                true !default;
-$enable-rounded:              false !default;
+$enable-rounded:              true !default;
 $enable-shadows:              true !default;
 $enable-gradients:            false !default;
 $enable-transitions:          true !default;
@@ -380,6 +381,11 @@ $spacers: (
   3: $spacer,
   4: $spacer * 1.5,
   5: $spacer * 3,
+  6: $spacer * 3.5,
+  7: $spacer * 4,
+  8: $spacer * 4.5,
+  9: $spacer * 5,
+  10: $spacer * 5.25,
 ) !default;
 
 $negative-spacers: if($enable-negative-margins, negativify-map($spacers), null) !default;
