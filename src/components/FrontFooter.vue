@@ -1,7 +1,23 @@
 <template>
-      <footer class="bg-dark py-4 py-md-5 text-light">
+  <footer class="bg-dark py-4 py-md-5 text-light">
       <div class="container row g-0 mx-auto px-3 fs-7 ls-2
         text-secondary text-center">
+        <nav class="nav-item mb-4">
+          <ul class="row justify-content-between list-unstyled m-0">
+              <li class="col-md-2 p-md-0 col-lg-2">
+                <a href="#" class="nav-link px-2 text-secondary"> 首頁 </a></li>
+              <li class="col-md-2 p-md-0 col-lg-2">
+                <a href="#" class="nav-link px-2 text-secondary"> 關於我們 </a>
+              </li>
+              <li class="col-md-2 p-md-0 col-lg-2">
+                <a href="#" class="nav-link px-2 text-secondary"> 常見問答 </a></li>
+              <li class="col-md-2 p-md-0 col-lg-2">
+                <a href="#" class="nav-link px-2 text-secondary"> 線上商城 </a>
+              </li>
+              <li class="col-md-2 p-md-0 col-lg-2">
+                <a href="#" class="nav-link px-2 text-secondary"> 購物車 </a></li>
+          </ul>
+        </nav>
         <div><router-link class="navbar-brand brandlogo link-light me-0" to="/"><span class="brandlogos">re.</span>HOUSE </router-link></div>
         <div class="mt-3">本網站僅供個人作品使用，不提供商業用途 <span class="d-none d-md-inline-block"><router-link class="p-0 nav-link link-secondary" to="/login">｜登入後台</router-link> </span></div>
         <div class="mt-3">© 2022 re.HOUSE COPYRIGHT</div>
@@ -17,40 +33,10 @@
           </li>
         </ul>
       </div>
-    </footer>
+  </footer>
 </template>
 
-<script>
-import emitter from '../methods/emitter';
-
-export default {
-  data() {
-    return {
-      cartData: {
-        carts: [],
-      },
-    };
-  },
-  methods: {
-    getCart() {
-      this.$http
-        .get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`)
-        .then((res) => {
-          console.log('購物車:', res);
-          this.cartData = res.data.data;
-        });
-    },
-  },
-  mounted() {
-    this.getCart();
-    emitter.on('update-cart', () => {
-      this.getCart();
-    });
-  },
-};
-</script>
-
-<style>
+<style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Expletus+Sans:ital,wght@0,400;0,600;0,700;1,500;1,600&display=swap');
 
 .brandlogo{
@@ -65,5 +51,4 @@ export default {
   font-size: 30px;
   font-style: italic;
 }
-
 </style>

@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
+    <div class="container">
       <router-link class="navbar-brand brandlogo" to="/"><span class="brandlogos">re.</span>HOUSE </router-link>
       <button
         class="navbar-toggler"
@@ -13,8 +13,8 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav d-flex align-items-center justify-content-center me-auto mb-2 mb-lg-0">
+      <div class="flex justify-content-end collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav d-flex align-items-center justify-content-center mb-2 mb-lg-0">
           <!-- <li class="nav-item">
             <router-link class="nav-link" to="/">首頁</router-link>
           </li> -->
@@ -29,22 +29,26 @@
           </li>
         </ul>
         <ul class="navbar-nav d-flex align-items-center flex-column flex-lg-row">
-          <div class="position-relative">
-            <router-link class="nav-link fs-5" to="/cart">
+          <div>
+            <router-link class="nav-link fs-5 position-relative" to="/cart">
               <i class="bi bi-bag text-secondary"></i>
               <div
                 class="
-                  rounded-circle
+                  badge
+                  rounded-pill
                   bg-danger
                   text-light
                   position-absolute
-                  py-1
-                  px-2
+                  top-0
+                  start-50
                 "
-                style="font-size: 6px; top: -7px; right: -10px"
-                v-if="cartData.carts"
+                style = "font-size: 10px;"
+                v-if = "cartData.carts"
               >
-                {{ cartData.carts.length }}
+                <!-- 購物車品項數量 (不重複) -->
+                <!-- {{ cartData.carts.length }} -->
+                <!-- 購物車品項數量總數 (重複) -->
+                {{ cartsLength }}
               </div>
             </router-link>
           </div>
@@ -72,22 +76,45 @@ export default {
       cartData: {
         carts: [],
       },
+      cartsLength: 0,
     };
   },
   methods: {
-    getCart() {
+    updateCartNum() {
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`;
       this.$http
-        .get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`)
+        .get(url)
         .then((res) => {
-          console.log('購物車:', res);
-          this.cartData = res.data.data;
+          if (res.data.success) {
+            let totalQty = 0;
+            this.cartsLength = res.data.data.carts.forEach((item, i) => {
+              console.log(item, i);
+              totalQty += item.qty;
+            });
+            this.cartsLength = totalQty;
+            console.log('購物車總數,', this.cartsLength);
+          } else {
+            console.log('購物車資料異常');
+          }
         });
     },
+    // getCart() {
+    //   this.$http
+    //     .get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`)
+    //     .then((res) => {
+    //       console.log('Navbar icon 目前購物車:', res);
+    //       this.cartData = res.data.data;
+    //     });
+    // },
   },
   mounted() {
-    this.getCart();
+    // this.getCart();
+    // emitter.on('update-cart', () => {
+    //   this.getCart();
+    // });
+    this.updateCartNum();
     emitter.on('update-cart', () => {
-      this.getCart();
+      this.updateCartNum();
     });
   },
 };

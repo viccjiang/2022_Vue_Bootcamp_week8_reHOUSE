@@ -124,7 +124,7 @@
           <img
           v-if="image"
           :src="image"
-          :alt="`多圖 ${id + 1}`"
+          :alt="product.title"
           class="images card-img-top"
         />
           <div class="card-body">
@@ -146,18 +146,19 @@ export default {
   data() {
     return {
       product: [],
+      id: '',
       isLoading: false,
     };
   },
   methods: {
-    grtProduct() {
+    getProduct() {
       // $route 物件取值
       // $router 方法
       const { id } = this.$route.params; // 這裡要用解構 airbnb 規則
       this.isLoading = true;
       this.$http(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/product/${id}`)
         .then((res) => {
-          console.log(res);
+          console.log('單一產品資訊 :', res);
           this.isLoading = false;
           this.product = res.data.product; // 賦值
         })
@@ -165,20 +166,29 @@ export default {
           console.dir(err.response.data.message);
         });
     },
-    addCart(id) {
+    addCart(id, qty = 1) {
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`;
       const cart = {
         product_id: id,
-        qty: 1,
+        qty,
       };
+      this.isLoading = true;
       this.$http.post(url, { data: cart }).then((res) => {
-        console.log(res);
+        this.isLoading = false;
+        this.$httpMessageState(res, '加入購物車');
+        console.log('購物車 :', res);
         emitter.emit('update-cart'); // 更新購物車數量
-      });
+      })
+        .catch((error) => {
+          this.isLoading = false;
+          this.$httpMessageState(error.response, '加入購物車');
+        });
+      console.log('增加單一品項 :', cart);
     },
   },
   mounted() {
-    this.grtProduct();
+    this.id = this.$route.params.id;
+    this.getProduct();
   },
 };
 </script>
