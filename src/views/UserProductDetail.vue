@@ -89,13 +89,6 @@
               </div>
             </div>
           </div>
-          <!-- <div class="col-6">
-            <a
-              href="./Orders.html"
-              class="text-nowrap btn btn-dark w-100 py-2"
-              >放入購物車</a
-            >
-          </div> -->
           <div class="col-6">
           <button
             type="button"
@@ -105,6 +98,22 @@
             加到購物車
           </button>
           </div>
+           <div>
+              <div class="input-group">
+                <!-- <input type="number" class="form-control"
+                    min="1" v-model="qty"> -->
+                    <select id="" class="form-select" v-model="qty"
+                    @change="updateCartItem(product)">
+                    <option :value="num" v-for="num in 20" :key="`${num}${product.id}`">
+                        {{num}}
+                    </option>
+                    </select>
+                    <button type="button" class="btn btn-primary"
+                    @click="addCart(product.id)">
+                        加入購物車
+                    </button>
+                </div>
+            </div>
         </div>
       </div>
     </div>
@@ -184,6 +193,17 @@ export default {
           this.$httpMessageState(error.response, '加入購物車');
         });
       console.log('增加單一品項 :', cart);
+    },
+    updateCartItem(item) {
+      const data = {
+        product_id: item.id,
+        qty: item.qty,
+      };
+      this.isLoadingItem = item.id;
+      this.$http.put(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${item.id}`, { data })
+        .then((res) => {
+          console.log(res);
+        });
     },
   },
   mounted() {
