@@ -43,7 +43,7 @@
                   start-50
                 "
                 style = "font-size: 10px;"
-                v-if = "cartData.carts"
+                v-if = "cartsLength != 0"
               >
                 <!-- 購物車品項數量 (不重複) -->
                 <!-- {{ cartData.carts.length }} -->
@@ -85,6 +85,7 @@ export default {
       this.$http
         .get(url)
         .then((res) => {
+          this.cartsLength = res.data.data.carts.length; // 購物車 icon 判斷
           if (res.data.success) {
             let totalQty = 0;
             this.cartsLength = res.data.data.carts.forEach((item, i) => {

@@ -93,7 +93,7 @@
           <button
             type="button"
             class="btn btn-outline-secondary rounded-0 border"
-            @click="addCart(product.id)"
+            @click="addCart(product.id, product.qty)"
           >
             加到購物車
           </button>
@@ -102,14 +102,14 @@
               <div class="input-group">
                 <!-- <input type="number" class="form-control"
                     min="1" v-model="qty"> -->
-                    <select id="" class="form-select" v-model="qty"
+                    <select id="" class="form-select" v-model.number="product.qty"
                     @change="updateCartItem(product)">
-                    <option :value="num" v-for="num in 20" :key="`${num}${product.id}`">
-                        {{num}}
-                    </option>
+                      <option :value="num" v-for="num in 20" :key="`${num}${product.id}`">
+                          {{num}}
+                      </option>
                     </select>
                     <button type="button" class="btn btn-primary"
-                    @click="addCart(product.id)">
+                    @click="addCart(product.id, product.qty)">
                         加入購物車
                     </button>
                 </div>
@@ -157,6 +157,7 @@ export default {
       product: [],
       id: '',
       isLoading: false,
+      qty: '',
     };
   },
   methods: {
@@ -199,7 +200,6 @@ export default {
         product_id: item.id,
         qty: item.qty,
       };
-      this.isLoadingItem = item.id;
       this.$http.put(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${item.id}`, { data })
         .then((res) => {
           console.log(res);
