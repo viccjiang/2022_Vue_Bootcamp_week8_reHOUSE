@@ -5,6 +5,12 @@
       <!-- 左側分類欄 -->
       <div class="col-3 mt-4">
         <div class="list-group rounded-0">
+          <!-- <a
+            href="#"
+            class="list-group-item list-group-item-action"
+            @click.prevent="getProducts()"
+            >全部</a
+          > -->
           <a
             href="#"
             v-for="item in categories"
