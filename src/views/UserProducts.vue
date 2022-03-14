@@ -95,7 +95,7 @@
                           border
                         "
                       >
-                        加到我的最愛
+                        <i class="bi bi-heart"></i> 加到我的最愛
                       </button>
                       <!-- 查看細節 -->
                       <button
