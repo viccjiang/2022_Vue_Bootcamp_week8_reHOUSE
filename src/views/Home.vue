@@ -1,14 +1,14 @@
 <template>
   <section>
     <div id="carouselExampleCaptions" class="" data-bs-ride="carousel">
-      <div class=""></div>
       <div class="carousel-inner">
         <div class="carousel-item active ">
           <div
-            class="card-img-top"
-            style="height: 80vh; background-image: url(https://images.unsplash.com/photo-1550226891-ef816aed4a98?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80);
+            class=""
+            style="height: 90vh; background-image: url(https://images.unsplash.com/photo-1550226891-ef816aed4a98?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80);
           background-size: cover;
           background-position:center center;
+          background-attachment: fixed
           "
           ></div>
           <div class="carousel-caption  d-md-block pb-10">
@@ -28,7 +28,7 @@
         </div>
       </div>
     </div>
-    <div class="bg-light mb-4 p-4 ">
+    <div class="bg-light p-4 ">
       <div class="container">
         <div id="carouselExampleControls" class="slide" data-ride="carousel">
           <div class="carousel-inner">
@@ -94,7 +94,7 @@
       </div>
     </div>
     <div class="container">
-      <div class="row mt-5">
+      <div class="row mt-0 mt-md-5">
         <div class="col-md-4 mt-4 mt-md-0">
           <div class="card border-0 mb-4 mt-md-0">
             <img
@@ -161,7 +161,7 @@
         </div>
       </div>
     </div>
-    <div class="container my-7">
+    <div class="container mb-0 mb-md-7">
       <div class="row bg-light">
         <div class="col-md-6 g-0">
           <img

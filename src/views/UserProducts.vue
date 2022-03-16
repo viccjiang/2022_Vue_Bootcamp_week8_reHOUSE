@@ -1,6 +1,6 @@
 <template>
   <Loading :active="isLoading"></Loading>
-  <div class="container">
+  <div class="container mt-10">
     <div class="row">
       <!-- 左側分類欄 -->
       <div class="col-3 mt-4">

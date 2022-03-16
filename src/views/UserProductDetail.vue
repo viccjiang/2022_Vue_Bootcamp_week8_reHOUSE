@@ -1,7 +1,7 @@
 <template>
   <Loading :active="isLoading"></Loading>
   <h2>單一產品</h2>
-  <div class="container">
+  <div class="container mt-10">
     <div class="row align-items-center">
       <div class="col-md-7">
         <div

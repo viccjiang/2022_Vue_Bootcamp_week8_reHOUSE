@@ -1,6 +1,6 @@
 <template>
 <Loading :active="isLoading"></Loading>
-  <div class="container">
+  <div class="container mt-10">
     <h2>購物車</h2>
     <div class="row p-3">
       <ul class="steps row g-0 list-unstyled mb-4">
