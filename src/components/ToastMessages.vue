@@ -19,6 +19,8 @@ export default {
   },
   inject: ['emitter'],
   mounted() {
+    // 因為這裡要接收其他元件資料
+    // 把其他頁面的 style, title, content 作成物件傳進來
     this.emitter.on('push-message', (message) => {
       const { style = 'success', title, content } = message;
       this.messages.push({ style, title, content });

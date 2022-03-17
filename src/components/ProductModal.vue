@@ -27,8 +27,9 @@
           <div class="row">
             <div class="col-sm-4">
               <div class="mb-3">
-                <label for="image" class="form-label">輸入圖片網址</label>
+                <label for="image" class="form-label" >輸入圖片網址</label>
                 <input
+                  ref="textUrl"
                   type="text"
                   class="form-control"
                   id="image"
@@ -39,7 +40,10 @@
               <div class="mb-3">
                 <label for="customFile" class="form-label"
                   >或 上傳圖片
-                  <i class="fas fa-spinner fa-spin"></i>
+                  <i
+                    class="fas fa-spinner fa-spin"
+                    v-if="status.fileUploading"
+                  ></i>
                 </label>
                 <input
                   type="file"
@@ -53,13 +57,23 @@
               <!-- 延伸技巧，多圖 -->
               <!-- 陣列 的判斷方式 ，如果是陣列才會跑判斷迴圈 -->
               <div v-if="Array.isArray(tempProduct.imagesUrl)">
-                <template class="mb-1" v-for="(image, key) in tempProduct.imagesUrl" :key="key">
+                <template class="mb-1" v-for="(image, key) in tempProduct.imagesUrl"
+                :key="key">
                   <div class="mb-3">
                     <label for="imageUrl" class="form-label">圖片網址</label>
-                    <input v-model="tempProduct.imagesUrl[key]" type="text" class="form-control"
+                    <input
+                      v-model="tempProduct.imagesUrl[key]"
+                      type="text" class="form-control"
                       placeholder="請輸入圖片連結">
                   </div>
                   <img class="img-fluid" :src="image">
+                  <div>
+                  <!-- 陣列刪除 pop -->
+                  <button class="btn btn-outline-danger btn-sm d-block w-100"
+                  @click="tempProduct.imagesUrl.pop()">
+                    刪除圖片
+                  </button>
+                </div>
                 </template>
                 <!-- 圖片區按鈕 -->
                 <!-- 先判斷陣列內 有沒有第一個元素 如果沒有的話要新增一個
@@ -67,26 +81,17 @@
                   如果有要判斷(特定索引位置)裡面有沒有字，有字的話跑出新增下一個
                   索引位置帶入(最後一個就是length-1) -->
                 <div v-if="!tempProduct.imagesUrl.length ||
-                tempProduct.imagesUrl[tempProduct.imagesUrl.length - 1]">
+                  tempProduct.imagesUrl[tempProduct.imagesUrl.length - 1]">
                   <!-- 陣列新增 -->
                   <button class="btn btn-outline-primary btn-sm d-block w-100"
                     @click="tempProduct.imagesUrl.push('')">
                     新增圖片
                   </button>
                 </div>
-                <div v-else>
-                  <!-- 陣列刪除 pop -->
-                  <button class="btn btn-outline-danger btn-sm d-block w-100"
-                  @click="tempProduct.imagesUrl.pop()">
-                    刪除圖片
-                  </button>
-                </div>
               </div>
-              <!-- 這裡的 if / else 對應是 Array.isArray 這個判斷式，
-              所以這裡的意思是指，若不是陣列的話，直接跑 createImages 這個方法嗎 ?
-              直接給空陣列 [] 並且新增 push 空陣列 ，請問助教的寫法是這個意思嗎 ? -->
               <div v-else>
-                <button class="btn btn-outline-primary btn-sm d-block w-100" @click="createImages">
+                <button class="btn btn-outline-primary btn-sm d-block w-100"
+                @click="tempProduct.imagesUrl.push('')">
                   新增圖片
                 </button>
               </div>
@@ -211,8 +216,8 @@
 </template>
 
 <script>
-// import Modal from 'bootstrap/js/dist/modal';
-import modalMixin from '../mixins/modalMixin';
+import Modal from 'bootstrap/js/dist/modal';
+// import modalMixin from '../mixins/modalMixin';
 
 export default {
   // 內層接收
@@ -226,29 +231,36 @@ export default {
       default: false,
     },
   },
-  emits: ['update-product'],
-  inject: ['emitter'],
-  // 監聽 modal 內 product 內容是否更動
-  watch: {
-    product() {
-      this.tempProduct = this.product;
-    },
-  },
   data() {
     return {
+      status: {},
       modal: {},
       tempProduct: {
         imagesUrl: [],
       }, // 進行外層資料的接收 ( 單向數據流 ) 修改資料時使用的 (編輯資料 )
     };
   },
+  emits: ['update-product'],
+  inject: ['emitter'],
+  // 監聽 modal 內 product 內容是否更動
+  watch: {
+    product() {
+      this.tempProduct = this.product;
+      if (!this.tempProduct.imagesUrl) {
+        this.tempProduct.imagesUrl = [];
+      }
+      if (!this.tempProduct.imageUrl) {
+        this.tempProduct.imageUrl = '';
+      }
+    },
+  },
   methods: {
-    // showModal() {
-    //   this.modal.show();
-    // },
-    // hideModal() {
-    //   this.modal.hide();
-    // },
+    showModal() {
+      this.modal.show();
+    },
+    hideModal() {
+      this.modal.hide();
+    },
     uploadFile() {
       // 把上傳的檔案取出來
       const uploadedFile = this.$refs.fileInput.files[0];
@@ -257,21 +269,36 @@ export default {
       const formData = new FormData();
       formData.append('file-to-upload', uploadedFile);
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/upload`;
-      this.$http.post(url, formData).then((response) => {
-        console.log(response.data);
+      this.$http.post(url, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }).then((response) => {
+        this.status.fileUploading = false;
         if (response.data.success) {
           this.tempProduct.imageUrl = response.data.imageUrl;
+          this.$refs.fileInput.value = '';
+          this.emitter.emit('push-message', {
+            style: 'success',
+            title: '圖片上傳成功',
+          });
+        } else {
+          this.$refs.fileInput.value = '';
+          this.emitter.emit('push-message', {
+            style: 'danger',
+            title: '圖片上傳失敗',
+            content: response.data.message,
+          });
         }
+      }).catch((error) => {
+        this.status.fileUploading = true;
+        this.$httpMessageState(error.response, '錯誤訊息');
       });
     },
-    createImages() {
-      this.tempProduct.imagesUrl = [];
-      this.tempProduct.imagesUrl.push('');
-    },
   },
-  // mounted() {
-  //   this.modal = new Modal(this.$refs.modal);
-  // },
-  mixins: [modalMixin],
+  mounted() {
+    this.modal = new Modal(this.$refs.modal);
+  },
+  // mixins: [modalMixin],
 };
 </script>
