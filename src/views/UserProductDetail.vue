@@ -52,7 +52,7 @@
         </p>
         <p class="h4 fw-bold text-end">NT${{ product.price }}</p>
         <div class="row align-items-center">
-          <div class="col-6">
+          <!-- <div class="col-6">
             <div class="input-group my-3 bg-light rounded">
               <div class="input-group-prepend">
                 <button
@@ -97,19 +97,19 @@
           >
             加到購物車
           </button>
-          </div>
+          </div> -->
            <div>
               <div class="input-group">
-                <!-- <input type="number" class="form-control"
-                    min="1" v-model="qty"> -->
-                    <select id="" class="form-select" v-model.number="product.qty"
+                <input type="number" class="form-control"
+                    min="1" v-model.number="qty">
+                    <!-- <select id="" class="form-select" v-model.number="product.qty"
                     @change="updateCartItem(product)">
                       <option :value="num" v-for="num in 20" :key="`${num}${product.id}`">
                           {{num}}
                       </option>
-                    </select>
+                    </select> -->
                     <button type="button" class="btn btn-primary"
-                    @click="addCart(product.id, product.qty)">
+                    @click="addCart(product)">
                         加入購物車
                     </button>
                 </div>
@@ -157,7 +157,7 @@ export default {
       product: [],
       id: '',
       isLoading: false,
-      qty: '',
+      qty: 1, // 畫面上的輸入欄位顯示的預設值
     };
   },
   methods: {
@@ -176,11 +176,12 @@ export default {
           console.dir(err.response.data.message);
         });
     },
-    addCart(id, qty = 1) {
+    addCart() {
+      const { id } = this.$route.params;
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`;
       const cart = {
         product_id: id,
-        qty,
+        qty: this.qty,
       };
       this.isLoading = true;
       this.$http.post(url, { data: cart }).then((res) => {
@@ -195,6 +196,15 @@ export default {
         });
       console.log('增加單一品項 :', cart);
     },
+    getCart() {
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
+      this.isLoading = true;
+      this.$http.get(url).then((response) => {
+        console.log(response);
+        this.cart = response.data.data;
+        this.isLoading = false;
+      });
+    },
     updateCartItem(item) {
       const data = {
         product_id: item.id,
@@ -203,6 +213,7 @@ export default {
       this.$http.put(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${item.id}`, { data })
         .then((res) => {
           console.log(res);
+          this.getCart();
         });
     },
   },
