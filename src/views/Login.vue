@@ -107,6 +107,7 @@ export default {
         title: '您已登入',
         showConfirmButton: false,
         timer: 2000,
+        iconColor: '#236F6B',
       });
     },
     signIn() {

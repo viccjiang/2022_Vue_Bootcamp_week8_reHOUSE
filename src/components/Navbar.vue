@@ -28,14 +28,25 @@
 <script>
 export default {
   methods: {
+    showAlert() {
+      // Use sweetalert2
+      this.$swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: '您已登出',
+        showConfirmButton: false,
+        timer: 2000,
+        iconColor: '#236F6B',
+      });
+    },
     logout() {
       const api = `${process.env.VUE_APP_API}/logout`;
       this.$http
         .post(api, this.user)
         .then((response) => {
           if (response.data.success) {
-            console.log('已登出');
             this.$router.push('/login');
+            this.showAlert();
           }
         })
         .catch((error) => {

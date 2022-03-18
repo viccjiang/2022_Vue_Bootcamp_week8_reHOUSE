@@ -20,8 +20,8 @@ app.config.globalProperties.$filters = {
 app.config.globalProperties.$httpMessageState = $httpMessageState;
 
 const options = {
-  confirmButtonColor: '#A1D6D3',
-  cancelButtonColor: '#ff7674',
+  confirmButtonColor: '#236F6B',
+  cancelButtonColor: '#EE847D',
 };
 
 app.use(VueAxios, axios);
