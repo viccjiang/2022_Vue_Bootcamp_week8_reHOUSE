@@ -146,17 +146,32 @@
       </div>
     </div>
   </div>
+  <div class="container">
+  <p>你可能也會喜歡</p>
+  <ul>
+    <li v-for="item in randomProducts" :key="item">
+      {{item.title}}
+    </li>
+  </ul>
+  </div>
 </template>
 
 <script>
 import emitter from '../methods/emitter';
 
+// 相同產品取得隨機數
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
 export default {
   data() {
     return {
-      product: [],
+      product: {},
+      products: [], // 取得所有產品資料 存起來
       id: '',
       isLoading: false,
+      randomProducts: [],
       qty: 1, // 畫面上的輸入欄位顯示的預設值
     };
   },
@@ -171,10 +186,38 @@ export default {
           console.log('單一產品資訊 :', res);
           this.isLoading = false;
           this.product = res.data.product; // 賦值
+          this.getProducts(); // 先取得單一產品資訊，再取得所有產品資訊
         })
         .catch((err) => {
           console.dir(err.response.data.message);
         });
+    },
+    getProducts() {
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`;
+      this.$http.get(url).then((res) => {
+        console.log('取得所有產品資料：', res);
+        this.products = res.data.products;
+        this.getLookLike();
+      });
+    },
+    getLookLike() {
+      const { category } = this.product;
+      const filterProducts = this.products.filter((item) => item.category === category); // 取得相同品項
+      console.log('filterProducts:', filterProducts);
+      const maxSize = filterProducts.length < 4 ? filterProducts.length : 4;
+      // 先新增一個類陣列，所以陣列的方法基本上不太能用
+      const arrSet = new Set([]);
+      console.log(arrSet.size); // 這是類陣列長度
+      getRandomInt();
+      for (let index = 0; arrSet.size < maxSize; index + 1) { // arrSet.size 不能寫死數字
+        const num = getRandomInt(filterProducts.length); // 取得品項隨機數字
+        arrSet.add(num);
+        console.log(arrSet, num);
+      }
+      arrSet.forEach((index) => {
+        this.randomProducts.push(filterProducts[index]);
+      });
+      console.log(this.randomProducts);
     },
     addCart() {
       const { id } = this.$route.params;
