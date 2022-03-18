@@ -1,16 +1,16 @@
 <template>
   <Loading :active="isLoading"></Loading>
   <div class="container mt-10">
-    <div class="row">
+    <div class="row flex-column flex-md-row">
       <!-- 左側分類欄 -->
-      <div class="col-3 mt-4">
-        <div class="list-group rounded-0">
-          <!-- <a
+      <div class="col-12 mt-4 flex-column flex-md-row">
+        <div class="list-group rounded-0 list-group-horizontal">
+           <a
             href="#"
             class="list-group-item list-group-item-action"
-            @click.prevent="getProducts()"
+            @click.prevent="selectCategory = ''"
             >全部</a
-          > -->
+          >
           <a
             href="#"
             v-for="item in categories"
@@ -22,12 +22,23 @@
         </div>
       </div>
       <!-- 右側產品列 -->
-      <div class="col-9">
+      <div class="col-12">
         <div class="row mt-4">
           <div class="col mb-4">
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
               <div class="col" v-for="item in filterProducts" :key="item.id">
-                <div class="card h-100 rounded-0">
+                <div class="card h-100 rounded-0 position-relative">
+                  <a
+                    @click="addMyFavorite(item)"
+                    :class="{ active: myFavorite.includes(item.id) }"
+                    class="
+                    link-secondary
+                    d-block
+                    rounded-0
+                    "
+                  >
+                    <i class="fs-5 bi bi-heart position-absolute top-00 end-0 me-1 mt-1"></i>
+                  </a>
                   <a
                     href="#"
                     class="rounded-0 "
@@ -65,9 +76,9 @@
                       NT$ {{ $filters.currency(item.price) }} 元
                     </div>
                     <!-- 按鈕 -->
-                    <div class="d-grid gap-2 col-12 mx-auto">
+                    <!-- <div class="d-grid gap-2 col-12 mx-auto"> -->
                       <!-- 加入購物車 -->
-                      <button
+                      <!-- <button
                         type="button"
                         class="btn btn-outline-secondary rounded-0 border"
                         :disabled="this.status.loadingItem === item.id"
@@ -81,9 +92,9 @@
                           <span class="visually-hidden">Loading...</span>
                         </div>
                         加到購物車
-                      </button>
+                      </button> -->
                       <!-- 我的最愛 -->
-                      <button
+                      <!-- <button
                         type="button"
                         @click="addMyFavorite(item)"
                         :class="{ active: myFavorite.includes(item.id) }"
@@ -95,16 +106,30 @@
                           border
                         "
                       >
-                        <i class="bi bi-heart"></i> 加到我的最愛
-                      </button>
+                        加到我的最愛
+                      </button> -->
                       <!-- 查看細節 -->
-                      <button
+                      <!-- <button
                         type="button"
                         class="btn btn-outline-secondary rounded-0 border"
                         @click="getProduct(item.id)"
                       >
                         查看更多
                       </button>
+                    </div> -->
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                      <button class="btn btn-outline-secondary rounded-0 border me-md-2" type="button"
+                        :disabled="this.status.loadingItem === item.id"
+                        @click="addCart(item.id)"><div
+                          v-if="this.status.loadingItem === item.id"
+                          class="spinner-border text-danger spinner-border-sm"
+                          role="status"
+                        >
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                        加到購物車</button>
+                      <button class="btn btn-outline-secondary rounded-0 border" type="button"
+                        @click="getProduct(item.id)">查看更多</button>
                     </div>
                   </div>
                 </div>
