@@ -88,8 +88,8 @@ export default {
           this.cartsLength = res.data.data.carts.length; // 購物車 icon 判斷
           if (res.data.success) {
             let totalQty = 0;
-            this.cartsLength = res.data.data.carts.forEach((item, i) => {
-              console.log(item, i);
+            this.cartsLength = res.data.data.carts.forEach((item) => {
+              // console.log(item);
               totalQty += item.qty;
             });
             this.cartsLength = totalQty;
