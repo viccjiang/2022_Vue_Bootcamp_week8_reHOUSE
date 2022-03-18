@@ -99,6 +99,16 @@ export default {
     };
   },
   methods: {
+    showAlert() {
+      // Use sweetalert2
+      this.$swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: '您已登入',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    },
     signIn() {
       const api = `${process.env.VUE_APP_API}/admin/signin`;
       this.$http
@@ -107,6 +117,7 @@ export default {
           if (response.data.success) {
             const { token, expired } = response.data;
             document.cookie = `jiangsToken=${token};expires=${new Date(expired)};`;
+            this.showAlert();
             this.$router.push('/dashboard/products');
           }
         })
