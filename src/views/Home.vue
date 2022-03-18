@@ -264,11 +264,46 @@
       </div>
     </div> -->
   </section>
+  <div class="bg-secondary text-white py-2 py-md-5">
+  <div class="container px-6 px-md-9">
+    <ul class="row list-unstyled gx-md-9">
+      <li class="col-md-4 mb-5 mb-md-0 py-2">
+        <div class="d-flex d-md-column flex-md-column flex-lg-row align-items-center justify-content-center justify-content-lg-center aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-offset="0">
+          <i class="bi bi-cart3 mb-md-3 mb-lg-0 display-5"></i>
+          <div class="ms-4 ms-md-0 ms-lg-4 text-md-center text-lg-start">
+            <h3 class="h5">Free</h3>
+            <p class="mb-0">所有會員滿 $1000 免運</p>
+          </div>
+        </div>
+      </li>
+      <li class="col-md-4 mb-5 mb-md-0 py-2">
+        <div class="d-flex d-md-column flex-md-column flex-lg-row align-items-center justify-content-center  justify-content-lg-center aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-offset="0">
+           <i class="bi bi-gift mb-md-3 mb-lg-0 display-5"></i>
+          <div class="ms-4 ms-md-0 ms-lg-4 text-md-center text-lg-start">
+            <h3 class="h5">Bonus</h3>
+            <p class="mb-0">立即享新客戶優惠折扣碼</p>
+          </div>
+        </div>
+      </li>
+      <li class="col-md-4 mb-5 mb-md-0 py-2">
+        <div class="d-flex d-md-column flex-md-column flex-lg-row align-items-center justify-content-center  justify-content-lg-center aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-offset="0">
+           <i class="bi bi-credit-card mb-md-3 mb-lg-0 display-5"></i>
+          <div class="ms-4 ms-md-0 ms-lg-4 text-md-center text-lg-start">
+            <h3 class="h5 text-nowrap">Payment Method</h3>
+            <p class="mb-0">多元支付方式</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
 </template>
 
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue';
+// import '../../node_modules/aos/dist/aos.css';
+import 'aos/dist/aos.css';
 
 export default {
   name: 'Home',
@@ -276,6 +311,7 @@ export default {
   //   HelloWorld,
   // },
   created() {
+    // AOS.init();
     console.log(process.env.VUE_APP_API, process.env.VUE_APP_PATH);
   },
 };

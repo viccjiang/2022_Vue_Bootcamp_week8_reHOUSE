@@ -200,11 +200,11 @@ export default {
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/?page=${page}`;
       this.isLoading = true;
       this.$http.get(url).then((response) => {
+        console.log('取得 response：', response);
         this.products = response.data.products;
-        console.log('products:', response);
         this.isLoading = false;
         if (response.data.success) {
-          console.log(response.data);
+          console.log('取得所有產品：', response.data);
           this.products = response.data.products;
           this.pagination = response.data.pagination;
           this.getCategories();
