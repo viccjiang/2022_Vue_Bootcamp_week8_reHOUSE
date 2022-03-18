@@ -165,7 +165,7 @@ const storageMethods = {
 export default {
   data() {
     return {
-      products: [],
+      products: [], // getProducts
       product: {},
       pagination: {},
       status: {
