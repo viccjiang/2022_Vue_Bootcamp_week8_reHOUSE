@@ -18,22 +18,30 @@
         </li>
       </ul>
     </div> -->
-    <div class="position-relative mb-5">
-      <div class="progress" style="height: 1px;">
-        <!-- <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div> -->
-      </div>
-      <button type="button" class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-primary rounded-pill" style="width: 2rem; height:2rem;">1</button>
-      <button type="button" class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem;">2</button>
-      <button type="button" class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem;">3</button>
+    <div class="row justify-content-center">
+      <div class="col">
+        <div class="position-relative mb-5">
+        <div class="progress" style="height: 1px;">
+          <!-- <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div> -->
+        </div>
+        <button type="button" class="ms-5 position-absolute top-0 start-0 translate-middle btn btn-sm btn-danger rounded-pill"
+        style="width: 2rem; height:2rem;">
+        1</button>
+        <button type="button" class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-secondary disabled rounded-pill"
+        style="width: 2rem; height:2rem;">
+        2</button>
+        <button type="button" class="ms-n5 position-absolute top-0 start-100 translate-middle btn btn-sm btn-secondary disabled rounded-pill"
+        style="width: 2rem; height:2rem;">
+        3</button>
     </div>
-    <p>總共{{cartData.carts.length}} 筆項目 </p>
-    {{ cartData.carts }}
-
+    <!-- {{ cartData.carts }} -->
+      </div>
+    </div>
   </div>
   <div class="container">
     <div class="row">
       <!-- 購物車列表 -->
-      <h3 class="bg-secondary text-light my-5 border p-3">Step1.確認購買</h3>
+      <!-- <h3 class="bg-secondary text-light my-5 border p-3">Step1.確認購買</h3> -->
       <div class="col-12">
         <div class="cartTable">
           <table class="table align-middle">
@@ -86,6 +94,7 @@
                 </tr>
               </template>
             </tbody>
+            <!-- <p>總共{{cartData.carts.length}} 筆項目 </p> -->
             <tfoot>
               <tr>
                 <td colspan="3" class="text-end">總計</td>
