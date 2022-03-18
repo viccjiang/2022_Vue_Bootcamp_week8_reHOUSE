@@ -25,7 +25,7 @@
                                             <label for="customCheck1" class="form-check-label">Remember password</label>
                                         </div> -->
                                         <div class="d-grid gap-2 mt-2">
-                                        <button type="submit" class="btn btn-warm btn-block mb-2 rounded-pill shadow-sm">登入</button>
+                                        <button type="submit" class="btn btn-soft btn-block mb-2 rounded-pill shadow-sm">登入</button>
                                         </div>
                                     </form>
                                 </div>
@@ -106,7 +106,7 @@ export default {
         icon: 'success',
         title: '您已登入',
         showConfirmButton: false,
-        timer: 1500,
+        timer: 2000,
       });
     },
     signIn() {
