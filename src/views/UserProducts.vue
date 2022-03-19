@@ -207,8 +207,8 @@ export default {
         // emitter.emit('update-favorite'); // 更新最愛數量
       }
       console.log('myFavorite 我的最愛數量', this.myFavorite.length);
-      storageMethods.save(this.myFavorite); // 儲存狀態
-      emitter.emit('update-favorite'); // 更新最愛數量
+      // storageMethods.save(this.myFavorite); // 儲存狀態
+      // emitter.emit('update-favorite'); // 更新最愛數量
     },
     getProducts(page = 1) {
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/?page=${page}`;
@@ -257,7 +257,8 @@ export default {
     myFavorite: {
       // 深層監聽
       handler() {
-        storageMethods.save(this.myFavorite);
+        storageMethods.save(this.myFavorite); // 把資料儲存
+        emitter.emit('update-favorite'); // 更新最愛數量
       },
       deep: true,
     },

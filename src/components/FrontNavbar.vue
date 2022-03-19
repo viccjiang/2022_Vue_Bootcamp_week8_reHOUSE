@@ -44,7 +44,7 @@
                   start-50
                 "
                 style = "font-size: 10px;"
-                v-if = "cartsLength != 0"
+                v-if = "favoriteNum != 0"
               >
                 <!-- 購物車品項數量 (不重複) -->
                 <!-- {{ cartData.carts.length }} -->
@@ -134,7 +134,7 @@ export default {
     // },
     updateFavoriteNum() {
       const arr = JSON.parse(localStorage.getItem('hexFavorite'));
-      this.favoriteNum = arr.length;
+      this.favoriteNum = arr ? arr.length : 0;
       console.log(this.favoriteNum);
     },
   },
