@@ -40,7 +40,8 @@
                     rounded-0
                     "
                   >
-                    <i class="fs-5 bi bi-heart position-absolute top-00 end-0 me-1 mt-1"></i>
+                    <i v-if="myFavorite.includes(item.id)" class="fs-5 bi bi-heart-fill position-absolute top-00 end-0 me-1 mt-1 text-danger"></i>
+                    <i v-else class="fs-5 bi bi-heart position-absolute top-00 end-0 me-1 mt-1 text-danger"></i>
                   </a>
                   <a
                     href="#"
