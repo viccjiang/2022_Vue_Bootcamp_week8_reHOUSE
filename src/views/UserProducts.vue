@@ -1,9 +1,7 @@
 <template>
   <Loading :active="isLoading"
   loader="bars"
-  color="#236F6B"
-    width="64"
-  height="64">
+  color="#236F6B">
   </Loading>
   <div class="container mt-10">
     <div class="row flex-column flex-md-row">
@@ -184,7 +182,7 @@ export default {
       },
       categories: [], // 產品的分類項目
       selectCategory: '', // 選取分類項目按鈕後，selectCategory = item，用 computed 做切換
-      myFavorite: storageMethods.get() || [], // 我的最愛
+      myFavorite: storageMethods.get() || [], // 我的最愛，有品項的話就用 storageMethods.get() 取到內容，沒有的話就傳空陣列
     };
   },
   components: {
@@ -199,10 +197,11 @@ export default {
     addMyFavorite(item) {
       // console.log('addMyFavorite');
       // this.myFavorite.push(item.id);
-      if (this.myFavorite.includes(item.id)) {
+      // this.myFavorite.includes(item.id) 原本是寫 item.id 存 id 就好，但後面要做其他事情可以先存整個物件
+      if (this.myFavorite.includes(item.id)) { // 這裡意思是 如果我的最愛已經有這個品項，再按一次就代表取消
         this.myFavorite.splice(this.myFavorite.indexOf(item.id), 1);
       } else {
-        this.myFavorite.push(item.id);
+        this.myFavorite.push(item.id); // 否則沒有此品項 就把品項加入
       }
       console.log('myFavorite 我的最愛數量', this.myFavorite.length);
       // storageMethods.save(this.myFavorite);

@@ -1,9 +1,7 @@
 <template>
 <Loading :active="isLoading"
   loader="bars"
-  color="#236F6B"
-  width="64"
-  height="64">
+  color="#236F6B">
 </Loading>
   <div class="container mt-10">
     <h2 class="mb-5">購物車</h2>
