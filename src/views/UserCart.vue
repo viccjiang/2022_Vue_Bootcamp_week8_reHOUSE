@@ -1,7 +1,9 @@
 <template>
 <Loading :active="isLoading"
-:loader="loader"
-:color="color">
+  loader="bars"
+  color="#236F6B"
+  width="64"
+  height="64">
 </Loading>
   <div class="container mt-10">
     <h2 class="mb-5">購物車</h2>
@@ -142,8 +144,6 @@ export default {
       loadingItem: '',
       isLoading: false,
       coupon_code: '',
-      loader: 'bars',
-      color: '#236F6B',
     };
   },
   provide() {

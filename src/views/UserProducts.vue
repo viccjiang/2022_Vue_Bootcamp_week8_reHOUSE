@@ -1,8 +1,9 @@
 <template>
   <Loading :active="isLoading"
-  :loader="loader"
-  :color="color"
-  >
+  loader="bars"
+  color="#236F6B"
+    width="64"
+  height="64">
   </Loading>
   <div class="container mt-10">
     <div class="row flex-column flex-md-row">
@@ -178,8 +179,6 @@ export default {
       products: [], // getProducts
       product: {},
       pagination: {},
-      loader: 'bars',
-      color: '#236F6B',
       status: {
         loadingItem: '', // 對應品項 id
       },
