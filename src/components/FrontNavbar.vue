@@ -30,6 +30,12 @@
         </ul>
         <ul class="navbar-nav d-flex align-items-center flex-column flex-lg-row">
           <div>
+            <router-link class="nav-link fs-5 text-secondary" to="/">
+              <i class="bi bi-heart"></i
+            >
+            </router-link>
+          </div>
+          <div>
             <router-link class="nav-link fs-5 position-relative" to="/cart">
               <i class="bi bi-bag text-secondary"></i>
               <div

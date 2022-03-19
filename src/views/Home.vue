@@ -108,7 +108,7 @@
                 簡約風格打造你的工作環境，讓生活更簡單！
               </p>
               <router-link to="/products">
-                <button type="button" class="btn btn-outline-warm  rounded-pill mt-4 py-2 px-5 stretched-link">
+                <button type="button" class="btn btn-outline-soft  rounded-pill mt-4 py-2 px-5 stretched-link">
                   立即前往
                 </button>
               </router-link>
@@ -130,7 +130,7 @@
               </p>
 
               <router-link to="/products">
-                <button type="button" class="btn btn-outline-warm  rounded-pill mt-4 py-2 px-5 stretched-link">
+                <button type="button" class="btn btn-outline-soft  rounded-pill mt-4 py-2 px-5 stretched-link">
                   立即前往
                 </button>
               </router-link>
@@ -152,7 +152,7 @@
               </p>
 
               <router-link to="/products">
-                <button type="button" class="btn btn-outline-warm  rounded-pill mt-4 py-2 px-5 stretched-link">
+                <button type="button" class="btn btn-outline-soft  rounded-pill mt-4 py-2 px-5 stretched-link">
                   立即前往
                 </button>
               </router-link>
@@ -264,7 +264,7 @@
       </div>
     </div> -->
   </section>
-  <div class="bg-secondary text-white py-2 py-md-5">
+  <div class="bg-soft text-white py-2 py-md-5">
   <div class="container px-6 px-md-9">
     <ul class="row list-unstyled gx-md-9">
       <li class="col-md-4 mb-5 mb-md-0 py-2">

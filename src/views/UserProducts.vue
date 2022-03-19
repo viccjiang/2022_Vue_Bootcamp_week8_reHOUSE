@@ -118,18 +118,18 @@
                       </button>
                     </div> -->
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                      <button class="btn btn-outline-secondary rounded-0 border me-md-2" type="button"
+                      <button class="btn btn-outline-secondary rounded-0 border" type="button"
+                        @click="getProduct(item.id)">查看更多</button>
+                      <button class="btn btn-soft text-light rounded-0 border-0 me-md-2" type="button"
                         :disabled="this.status.loadingItem === item.id"
                         @click="addCart(item.id)"><div
                           v-if="this.status.loadingItem === item.id"
-                          class="spinner-border text-danger spinner-border-sm"
+                          class="spinner-border text-light spinner-border-sm"
                           role="status"
                         >
                           <span class="visually-hidden">Loading...</span>
                         </div>
                         加到購物車</button>
-                      <button class="btn btn-outline-secondary rounded-0 border" type="button"
-                        @click="getProduct(item.id)">查看更多</button>
                     </div>
                   </div>
                 </div>
@@ -137,7 +137,7 @@
             </div>
           </div>
           <!-- 分頁 -->
-          <Pagination
+          <Pagination class="d-flex justify-content-center justify-content-md-end"
             :pages="pagination"
             @emit-pages="getProducts"
           ></Pagination>
@@ -145,20 +145,26 @@
       </div>
     </div>
   </div>
+  <!-- 我的最愛 -->
+  <!-- {{ myFavorite.length }} -->
 </template>
 
 <script>
 import emitter from '@/methods/emitter';
 import Pagination from '../components/Pagination.vue';
-// LocalStorage
-// 轉型
+// 我的最愛使用 LocalStorage 來存取
+// 因為LocalStorage不能存物件，所以要先轉型為字串
 const storageMethods = {
+  // 存檔
   save(favorite) {
+    // 丟進來的東西先做轉型 JSON.stringify
     const favoriteString = JSON.stringify(favorite);
-    // hexFavorite
+    // hexFavorite 再做寫入，也就是把東西存進去
     localStorage.setItem('hexFavorite', favoriteString);
   },
+  // 取出
   get() {
+    // 把 hexFavorite 欄位從 localStorage 取出時會是字串，所以要再用 JSON.parse 轉為物件
     return JSON.parse(localStorage.getItem('hexFavorite'));
   },
 };
@@ -171,9 +177,9 @@ export default {
       status: {
         loadingItem: '', // 對應品項 id
       },
-      categories: [],
-      selectCategory: '',
-      myFavorite: storageMethods.get() || [],
+      categories: [], // 產品的分類項目
+      selectCategory: '', // 選取分類項目按鈕後，selectCategory = item，用 computed 做切換
+      myFavorite: storageMethods.get() || [], // 我的最愛
     };
   },
   components: {
@@ -186,14 +192,14 @@ export default {
   },
   methods: {
     addMyFavorite(item) {
-      console.log('addMyFavorite');
+      // console.log('addMyFavorite');
       // this.myFavorite.push(item.id);
       if (this.myFavorite.includes(item.id)) {
         this.myFavorite.splice(this.myFavorite.indexOf(item.id), 1);
       } else {
         this.myFavorite.push(item.id);
       }
-      console.log(this.myFavorite);
+      console.log('myFavorite 我的最愛數量', this.myFavorite.length);
       // storageMethods.save(this.myFavorite);
     },
     getProducts(page = 1) {
@@ -214,11 +220,13 @@ export default {
     getCategories() {
       // Vue 3 雙向綁定 Proxy(new Proxy 物件)
       // new Set
-      const categories = new Set();
+      const categories = new Set(); // 建在全新的空的物件上
       this.products.forEach((item) => {
-        categories.add(item.category);
+        categories.add(item.category);// 把品項加入 categories
       });
-      this.categories = [...categories];
+      console.log('取得所有分類 Set：', categories); // 這裡是 Set 屬於類陣列
+      this.categories = [...categories]; // 這裡要轉成純陣列的形式存回去  所以這裡要轉為 Proxy
+      console.log('取得所有分類 Proxy：', this.categories);
     },
     getProduct(id) {
       this.$router.push(`/product/${id}`);
@@ -237,7 +245,7 @@ export default {
       });
     },
   },
-  watch: {
+  watch: { // 監聽特定值
     myFavorite: {
       // 深層監聽
       handler() {
@@ -246,10 +254,11 @@ export default {
       deep: true,
     },
   },
-  computed: {
-    // 產生新的資料集
+  computed: { // 產生新的資料集 (裡面的值產生變化之後，資料重新運算)
     filterProducts() {
       return this.products.filter((item) => item.category.match(this.selectCategory));
+      // 如果選到的產品品項是一樣的就呈現
+      // 監聽 this.products  this.selectCategory
       // 空字串，或任何符合結果都會是 “真值”
     },
   },
