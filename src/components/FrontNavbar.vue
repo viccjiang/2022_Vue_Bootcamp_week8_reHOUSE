@@ -30,6 +30,30 @@
         </ul>
         <ul class="navbar-nav d-flex align-items-center flex-column flex-lg-row">
           <div>
+            <router-link class="nav-link fs-5 position-relative text-secondary" to="/">
+              <i class="bi bi-heart"></i
+            >
+                          <div
+                class="
+                  badge
+                  rounded-pill
+                  bg-danger
+                  text-light
+                  position-absolute
+                  top-0
+                  start-50
+                "
+                style = "font-size: 10px;"
+                v-if = "cartsLength != 0"
+              >
+                <!-- 購物車品項數量 (不重複) -->
+                <!-- {{ cartData.carts.length }} -->
+                <!-- 購物車品項數量總數 (重複) -->
+                {{ favoriteNum }}
+              </div>
+            </router-link>
+          </div>
+          <div>
             <router-link class="nav-link fs-5 position-relative" to="/cart">
               <i class="bi bi-bag text-secondary"></i>
               <div
@@ -77,6 +101,7 @@ export default {
         carts: [],
       },
       cartsLength: 0,
+      favoriteNum: 0,
     };
   },
   methods: {
@@ -107,6 +132,11 @@ export default {
     //       this.cartData = res.data.data;
     //     });
     // },
+    updateFavoriteNum() {
+      const arr = JSON.parse(localStorage.getItem('hexFavorite'));
+      this.favoriteNum = arr.length;
+      console.log(this.favoriteNum);
+    },
   },
   mounted() {
     // this.getCart();
@@ -116,6 +146,10 @@ export default {
     this.updateCartNum();
     emitter.on('update-cart', () => {
       this.updateCartNum();
+    });
+    this.updateFavoriteNum();
+    emitter.on('update-favorite', () => {
+      this.updateFavoriteNum();
     });
   },
 };

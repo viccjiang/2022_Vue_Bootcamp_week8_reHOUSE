@@ -201,11 +201,14 @@ export default {
       // this.myFavorite.includes(item.id) 原本是寫 item.id 存 id 就好，但後面要做其他事情可以先存整個物件
       if (this.myFavorite.includes(item.id)) { // 這裡意思是 如果我的最愛已經有這個品項，再按一次就代表取消
         this.myFavorite.splice(this.myFavorite.indexOf(item.id), 1);
+        // emitter.emit('update-favorite'); // 更新最愛數量
       } else {
         this.myFavorite.push(item.id); // 否則沒有此品項 就把品項加入
+        // emitter.emit('update-favorite'); // 更新最愛數量
       }
       console.log('myFavorite 我的最愛數量', this.myFavorite.length);
-      // storageMethods.save(this.myFavorite);
+      storageMethods.save(this.myFavorite); // 儲存狀態
+      emitter.emit('update-favorite'); // 更新最愛數量
     },
     getProducts(page = 1) {
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/?page=${page}`;
