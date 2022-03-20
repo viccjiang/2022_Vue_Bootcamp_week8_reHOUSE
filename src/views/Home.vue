@@ -297,12 +297,24 @@
     </ul>
   </div>
 </div>
+<div class="hd">
+    <div id="darkBack"></div>
+    <div id="popUp">
+      <div id="close" class="btn-close float-end mt-2 me-2"></div>
+      <div id="new"><span>新品上市</span></div>
+      <h2>WFH居家必備，年度鉅獻</h2>
+      <br />
+      <a href="#" target="_blank" class="nav-link link-light newbtn">大家都在買</a>
+    </div>
+    <div id="plus"><span>新品上市</span></div>
+</div>
 <div class="footer">
     <div class="gotop btn border" v-show="gotop" @click="toTop"><i class="px-1 bi bi-chevron-up"></i></div>
 </div>
 </template>
 
 <script>
+/* global $ */
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue';
 // import '../../node_modules/aos/dist/aos.css';
@@ -359,11 +371,29 @@ export default {
       // }, 10);
     },
   },
-  created() {
+  mounted() {
     // AOS.init();
     console.log(process.env.VUE_APP_API, process.env.VUE_APP_PATH);
     window.addEventListener('scroll', this.handleScroll, true);
     this.toTop();
+    $(document).scroll(() => {
+      const scroll = $(this).scrollTop();
+      if (scroll >= 150) {
+        $('#popUp').css('margin-left', '-425px');
+        $('#plus').css('margin-left', '0px');
+      } else {
+        $('#plus').css('margin-left', '0px');
+        $('#popUp').css('margin-left', '-425px');
+      }
+    });
+    $('#plus').click(() => {
+      $('#popUp').css('margin-left', '0px');
+      $('#plus').css('margin-left', '-425px');
+    });
+    $('#close').click(() => {
+      $('#popUp').css('margin-left', '-425px');
+      $('#plus').css('margin-left', '0px');
+    });
   },
 };
 </script>
@@ -400,5 +430,109 @@ export default {
   font-size: 30px;
   font-style: italic;
 }
-
+a {
+  text-decoration: none;
+}
+.hd {
+  background-size: cover;
+  background-position: center;
+  height: 0 auto;
+  width: 100%;
+}
+#popUp {
+  position: fixed;
+  max-width: 350px;
+  height: 200px;
+  margin-bottom: 100px;
+  background: rgba(236, 240, 241, 1);
+  /*   border: 7px solid #fff; */
+  bottom: 0;
+  margin-left: 0;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+  z-index: 1000;
+}
+#new span {
+  background: #ee847d;
+  position: absolute;
+  color: #FFF;
+  padding: 4px 10px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-top: -15px;
+}
+#popUp .close {
+  color: #464646;
+  right: 10px;
+  top: 8px;
+  position: absolute;
+  font-size: 14px;
+  cursor: pointer;
+}
+#popUp h2 {
+  font-size: 16px;
+  color: #464646;
+  line-height: 16px;
+  font-weight: 400;
+  text-align: center;
+  margin-top: 50px;
+  padding: 0 20px;
+  margin-bottom: 10px;
+}
+.newbtn {
+  margin: 0 auto;
+  text-align: center;
+  right: 0;
+  left: 0;
+  position: absolute;
+  width: 120px;
+  font-size: 15px;
+  color: #fff;
+  border-bottom: 2px solid #18729f;
+  background: #236f6b;
+  border-radius: 4px;
+  padding: 10px 0;
+}
+#plus {
+  position: fixed;
+  color: #fff;
+  bottom: 15%;
+  font-size: 15px;
+  margin-left: -425px;
+  -webkit-transition: all 1.25s ease;
+  -moz-transition: all 1.25s ease;
+  -o-transition: all 1.25s ease;
+  transition: all 1.25s ease;
+  cursor: pointer;
+  text-align: left;
+  letter-spacing: 5px;
+  z-index: 1000;
+}
+#plus span {
+  position: absolute;
+  margin-top: 26px;
+  left: 8px;
+  letter-spacing: 5px;
+  line-height: 25px;
+}
+#plus::after {
+  content: "";
+  display: block;
+  display: relative;
+  border-top: 90px solid #236f6b;
+  border-bottom: 50px solid #236f6b;
+  border-left: 40px solid #236f6b;
+  border-radius: 0px 10px 10px 0;
+}
+@media all and (max-width: 900px) {
+  #popUp {
+    margin-left: -425px;
+  }
+  #plus {
+    margin-left: 0px;
+  }
+}
 </style>
