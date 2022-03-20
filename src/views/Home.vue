@@ -297,6 +297,9 @@
     </ul>
   </div>
 </div>
+<div class="footer">
+    <div class="gotop btn border" v-show="gotop" @click="toTop">Top</div>
+</div>
 </template>
 
 <script>
@@ -328,17 +331,62 @@ export default {
   data() {
     return {
       myFavorite: storageMethods.get() || [],
+      gotop: false,
     };
+  },
+  methods: {
+    handleScroll() {
+      const scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrolltop > 30) {
+        this.gotop = true;
+      } else {
+        this.gotop = false;
+      }
+      // scrolltop > 30 ? (this.gotop = true) : (this.gotop = false);
+    },
+    toTop() {
+      document.getElementById('app').scrollIntoView();
+      // const top = document.documentElement.scrollTop || document.body.scrollTop;
+      // 實現滾動效果
+      // console.log(top);
+      // const timeTop = setInterval(() => {
+      //   document.body.scrollTop = document.documentElement.scrollTop;
+      //   document.body.scrollTop = top;
+      //   document.body.scrollTop -= 50;
+      //   if (top <= 0) {
+      //     clearInterval(timeTop);
+      //   }
+      // }, 10);
+    },
   },
   created() {
     // AOS.init();
     console.log(process.env.VUE_APP_API, process.env.VUE_APP_PATH);
+    window.addEventListener('scroll', this.handleScroll, true);
+    this.toTop();
   },
 };
 </script>
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Expletus+Sans:ital,wght@0,400;0,600;0,700;1,500;1,600&display=swap');
+
+.footer .gotop {
+  text-align: center;
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  background-color: #236F6B;
+  color: #FFF;
+}
+
+.footer .gotop:hover {
+  background-color: #fff;
+  color: #236F6B;
+}
 
 .brandlogo{
   font-family:'Expletus Sans', cursive;
