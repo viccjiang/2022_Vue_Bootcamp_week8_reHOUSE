@@ -298,7 +298,7 @@
   </div>
 </div>
 <div class="footer">
-    <div class="gotop btn border" v-show="gotop" @click="toTop">Top</div>
+    <div class="gotop btn border" v-show="gotop" @click="toTop"><i class="px-1 bi bi-chevron-up"></i></div>
 </div>
 </template>
 
