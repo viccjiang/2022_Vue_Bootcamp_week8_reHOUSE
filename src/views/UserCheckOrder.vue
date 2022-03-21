@@ -59,7 +59,7 @@
             >繼續購物</router-link
           >
           <div v-if="order.is_paid === false">
-            <button class="btn btn-danger" @click='payOrder'>確認付款去</button>
+            <button class="btn btn-danger" @click="payOrder">確認付款去</button>
             <!-- 再做一個完成訂購頁面 -->
           </div>
         </div>
@@ -69,6 +69,8 @@
 </template>
 
 <script>
+import emitter from '../methods/emitter';
+
 export default {
   data() {
     return {
@@ -80,6 +82,16 @@ export default {
     };
   },
   methods: {
+    getCarts() {
+      this.isLoading = true;
+      this.$http
+        .get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`)
+        .then((res) => {
+          this.isLoading = false;
+          console.log('購物車：', res);
+          this.cartData = res.data.data;
+        });
+    },
     getOrder() {
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/order/${this.orderId}`;
       this.$http.get(url).then((res) => {
@@ -97,6 +109,8 @@ export default {
           this.order.is_paid = true;
           console.log(this.order.is_paid);
           this.getOrder();
+          this.getCarts();
+          emitter.emit('update-cart'); // 更新購物車數量
         }
       });
     },
