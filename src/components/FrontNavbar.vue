@@ -135,7 +135,7 @@ export default {
     updateFavoriteNum() {
       const arr = JSON.parse(localStorage.getItem('hexFavorite'));
       this.favoriteNum = arr ? arr.length : 0;
-      console.log(this.favoriteNum);
+      console.log('目前我的最愛數量:', this.favoriteNum);
     },
   },
   mounted() {

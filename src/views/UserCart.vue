@@ -3,7 +3,7 @@
   loader="bars"
   color="#236F6B">
 </Loading>
-  <div class="container mt-10">
+  <div class="container mt-15">
     <h2 class="mb-5">購物車</h2>
     <!-- <div class="row p-3">
       <ul class="steps row g-0 list-unstyled mb-4">
@@ -21,6 +21,7 @@
         </li>
       </ul>
     </div> -->
+
     <div class="row justify-content-center">
       <div class="col">
         <div class="position-relative mb-5">
@@ -44,8 +45,9 @@
   <div class="container">
     <div class="row">
       <!-- 購物車列表 -->
-      <!-- <h3 class="bg-secondary text-light my-5 border p-3">Step1.確認購買</h3> -->
-      <div class="col-12">
+      <!-- 左側 - 確認訂單數量價格... -->
+      <div class="col-6">
+        <h3 class="bg-secondary text-light my-5 border p-3">Step1.確認購買</h3>
         <div class="cartTable">
           <table class="table align-middle">
             <thead>
@@ -124,7 +126,90 @@
           </div>
         </div>
       </div>
+      <!-- 右側 - 送出表單 -->
+      <div class="col-6">
+      <!-- <h3 class="bg-secondary text-light my-5 border p-3 ">Step２.填寫資料</h3> -->
+        <div class="col">
+          <h3 class="bg-secondary text-light my-5 border p-3">填寫訂購資訊</h3>
+          <Form class="" v-slot="{ errors }" @submit="createOrder">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <Field
+                id="email"
+                name="email"
+                type="email"
+                class="form-control"
+                :class="{ 'is-invalid': errors['email'] }"
+                placeholder="請輸入 Email"
+                rules="email|required"
+                v-model="form.user.email"
+              ></Field>
+              <ErrorMessage name="email" class="invalid-feedback"></ErrorMessage>
+            </div>
+
+            <div class="mb-3">
+              <label for="name" class="form-label">收件人姓名</label>
+              <Field
+                id="name"
+                name="姓名"
+                type="text"
+                class="form-control"
+                :class="{ 'is-invalid': errors['姓名'] }"
+                placeholder="請輸入姓名"
+                rules="required"
+                v-model="form.user.name"
+              ></Field>
+              <ErrorMessage name="姓名" class="invalid-feedback"></ErrorMessage>
+            </div>
+
+            <div class="mb-3">
+              <label for="tel" class="form-label">收件人電話</label>
+              <Field
+                id="tel"
+                name="電話"
+                type="tel"
+                class="form-control"
+                :class="{ 'is-invalid': errors['電話'] }"
+                placeholder="請輸入電話"
+                rules="required"
+                v-model="form.user.tel"
+              ></Field>
+              <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
+            </div>
+
+            <div class="mb-3">
+              <label for="address" class="form-label">收件人地址</label>
+              <Field
+                id="address"
+                name="地址"
+                type="text"
+                class="form-control"
+                :class="{ 'is-invalid': errors['地址'] }"
+                placeholder="請輸入地址"
+                rules="required"
+                v-model="form.user.address"
+              ></Field>
+              <ErrorMessage name="地址" class="invalid-feedback"></ErrorMessage>
+            </div>
+
+            <div class="mb-3">
+              <label for="message" class="form-label">留言</label>
+              <textarea
+                name=""
+                id="message"
+                class="form-control"
+                cols="30"
+                rows="5"
+                v-model="form.message"
+              ></textarea>
+            </div>
+            <div class="text-end my-4">
+              <button class="btn btn-danger">送出訂單</button>
+            </div>
+          </Form>
+        </div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -134,14 +219,23 @@ import emitter from '../methods/emitter';
 export default {
   data() {
     return {
+      products: [],
+      product: {},
       cartData: {
         carts: {},
       },
-      products: [],
-      product: {},
-      loadingItem: '',
+      loadingItem: '', // 對應品項 id
       isLoading: false,
       coupon_code: '',
+      form: {
+        user: {
+          name: '',
+          email: '',
+          tel: '',
+          address: '',
+        },
+        message: '',
+      },
     };
   },
   provide() {
@@ -151,11 +245,11 @@ export default {
   },
   methods: {
     getProducts() {
-      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/all`;
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`;
       this.isLoading = true;
       this.$http.get(url).then((response) => {
         this.products = response.data.products;
-        // console.log('products:', response);
+        console.log('產品列表:', response);
         this.isLoading = false;
       });
     },
@@ -168,27 +262,84 @@ export default {
         .get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`)
         .then((res) => {
           this.isLoading = false;
-          console.log(res);
+          console.log('購物車：', res);
           this.cartData = res.data.data;
         });
     },
-    addToCart(id, qty = 1) {
-      const data = {
-        product_id: id,
-        qty,
-      };
+    // // 加入購物車
+    // addToCart(id, qty = 1) {
+    //   const data = {
+    //     product_id: id,
+    //     qty,
+    //   };
+    //   this.loadingItem = id;
+    //   this.$http
+    //     .post(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`, { data })
+    //     .then((res) => {
+    //       console.log(res);
+    //       this.loadingItem = '';
+    //       // get-cart
+    //       emitter.emit('get-cart');
+    //     });
+    // },
+    // 刪除更物車品項
+    removeCartItem(id) {
       this.loadingItem = id;
-      this.$http
-        .post(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`, { data })
-        .then((res) => {
-          console.log(res);
-          this.loadingItem = '';
-          // get-cart
-          emitter.emit('get-cart');
-        });
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${id}`;
+      this.isLoading = true;
+      this.$http.delete(url).then((response) => {
+        this.$httpMessageState(response, '移除購物車品項');
+        this.loadingItem = '';
+        this.getCarts();
+        this.isLoading = false;
+        emitter.emit('update-cart'); // 更新購物車數量
+      });
+    },
+    // 更新購物車
+    updateCart(item) {
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${item.id}`;
+      this.isLoading = true;
+      this.loadingItem = item.id;
+      const cart = {
+        product_id: item.product_id,
+        qty: item.qty,
+      };
+      this.$http.put(url, { data: cart }).then((res) => {
+        console.log(res);
+        this.loadingItem = '';
+        this.getCarts();
+        this.isLoading = false;
+        emitter.emit('update-cart'); // 更新購物車數量
+      });
+    },
+    // 套用優惠券
+    addCouponCode() {
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/coupon`;
+      const coupon = {
+        code: this.coupon_code,
+      };
+      this.isLoading = true;
+      this.$http.post(url, { data: coupon }).then((response) => {
+        this.$httpMessageState(response, '加入優惠券');
+        this.getCarts();
+        this.isLoading = false;
+      });
+    },
+    // 訂單成立，送出表單
+    createOrder() {
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/order`;
+      const order = this.form;
+      this.$http.post(url, { data: order }).then((response) => {
+        if (response.data.success) {
+          this.$router.push(`/check/${response.data.orderId}`);
+          this.$refs.form.resetForm();
+        }
+        this.isLoading = false;
+      });
     },
   },
   mounted() {
+    this.getProducts();
     this.getCarts();
   },
 };
