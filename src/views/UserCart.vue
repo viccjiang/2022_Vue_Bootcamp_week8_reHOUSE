@@ -28,7 +28,7 @@
         <div class="progress" style="height: 1px;">
           <!-- <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div> -->
         </div>
-        <button type="button" class="ms-5 position-absolute top-0 start-0 translate-middle btn btn-sm btn-danger rounded-pill"
+        <button type="button" class="ms-5 position-absolute top-0 start-0 translate-middle btn btn-sm btn-soft rounded-pill"
         style="width: 2rem; height:2rem;">
         1</button>
         <button type="button" class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-secondary disabled rounded-pill"
@@ -43,11 +43,19 @@
     </div>
   </div>
   <div class="container">
-    <div class="row">
+    <div class="row g-6">
       <!-- 購物車列表 -->
       <!-- 左側 - 確認訂單數量價格... -->
-      <div class="col-6">
+      <div class="col-12 col-md-6">
         <h3 class="bg-secondary text-light my-5 border p-3">Step1.確認購買</h3>
+        <button
+          type="button"
+          class="btn btn-outline-danger btn-sm"
+          @click="removeCart()"
+        >
+          <i class="bi bi-trash"> </i>
+          清除全部購物車
+        </button>
         <div class="cartTable">
           <table class="table align-middle">
             <thead>
@@ -68,7 +76,7 @@
                       :disabled="loadingItem === item.id"
                       @click="removeCartItem(item.id)"
                     >
-                      <i class="bi bi-trash"></i>
+                      <i class="bi bi-x"></i>
                     </button>
                   </td>
                   <td>
@@ -127,11 +135,11 @@
         </div>
       </div>
       <!-- 右側 - 送出表單 -->
-      <div class="col-6">
+      <div class="col-12 col-md-6">
       <!-- <h3 class="bg-secondary text-light my-5 border p-3 ">Step２.填寫資料</h3> -->
         <div class="col">
           <h3 class="bg-secondary text-light my-5 border p-3">填寫訂購資訊</h3>
-          <Form class="" v-slot="{ errors }" @submit="createOrder">
+          <Form ref="form" class="" v-slot="{ errors }" @submit="createOrder">
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
               <Field
@@ -203,8 +211,8 @@
                 v-model="form.message"
               ></textarea>
             </div>
-            <div class="text-end my-4">
-              <button class="btn btn-danger">送出訂單</button>
+            <div class="text-end my-4 d-grid">
+              <button class="btn btn-soft">送出訂單</button>
             </div>
           </Form>
         </div>
@@ -282,7 +290,7 @@ export default {
     //       emitter.emit('get-cart');
     //     });
     // },
-    // 刪除更物車品項
+    // 刪除購物車品項
     removeCartItem(id) {
       this.loadingItem = id;
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${id}`;
@@ -290,6 +298,17 @@ export default {
       this.$http.delete(url).then((response) => {
         this.$httpMessageState(response, '移除購物車品項');
         this.loadingItem = '';
+        this.getCarts();
+        this.isLoading = false;
+        emitter.emit('update-cart'); // 更新購物車數量
+      });
+    },
+    // 刪除全部購物車品項
+    removeCart() {
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/carts`;
+      this.isLoading = true;
+      this.$http.delete(url).then((response) => {
+        this.$httpMessageState(response, '移除全部購物車品項');
         this.getCarts();
         this.isLoading = false;
         emitter.emit('update-cart'); // 更新購物車數量
@@ -333,8 +352,9 @@ export default {
         if (response.data.success) {
           this.$router.push(`/check/${response.data.orderId}`);
           this.$refs.form.resetForm();
+          this.isLoading = false;
+          // emitter.emit('update-cart'); // 更新購物車數量
         }
-        this.isLoading = false;
       });
     },
   },
