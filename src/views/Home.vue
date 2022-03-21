@@ -297,17 +297,27 @@
     </ul>
   </div>
 </div>
+<!-- 左側浮動廣告 -->
 <div class="hd">
-    <div id="darkBack"></div>
-    <div id="popUp">
-      <div id="close" class="btn-close float-end mt-2 me-2"></div>
-      <div id="new"><span>新品上市</span></div>
-      <h2>WFH居家必備，年度鉅獻</h2>
-      <br />
-      <a href="#" target="_blank" class="nav-link link-light newbtn">大家都在買</a>
+  <div id="darkBack"></div>
+  <div id="popUp">
+    <div id="close" class="btn-close float-end mt-2 me-2"></div>
+    <div id="new"><span>新品上市</span></div>
+    <h2>WFH居家必備，年度鉅獻</h2>
+    <p class="m-0 text-center">結帳不限金額，立即享五折</p>
+    <br />
+    <!-- <a href="#" target="_blank" class="nav-link link-light newbtn">大家都在買</a> -->
+    <!-- <div class="toast-body"> -->
+    <div class="d-flex justify-content-center d-flex align-items-center">
+      <img src="https://pic.sopili.net/pub/emoji/noto-emoji/png/128/emoji_u1f449.png" width=20 height=20>
+      <span class="ms-2" id="content"> 2022</span>
+      <button @click="copyCouponCode" class="btn btn-outline-soft ms-3 btn-sm" id="copyBT">複製優惠碼</button>
     </div>
-    <div id="plus"><span>新品上市</span></div>
+    <!-- </div> -->
+  </div>
+  <div id="plus"><span>新品上市</span></div>
 </div>
+<!-- GoTop -->
 <div class="footer">
     <div class="gotop btn border" v-show="gotop" @click="toTop"><i class="px-1 bi bi-chevron-up"></i></div>
 </div>
@@ -347,6 +357,16 @@ export default {
     };
   },
   methods: {
+    copyCouponCode() {
+      const range = document.createRange();
+      range.selectNode(document.getElementById('content'));
+      const selection = window.getSelection();
+      if (selection.rangeCount > 0) selection.removeAllRanges();
+      selection.addRange(range);
+      document.execCommand('copy');
+      this.showAlert();
+      console.log('複製成功！');
+    },
     handleScroll() {
       const scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
       if (scrolltop > 30) {
@@ -369,6 +389,17 @@ export default {
       //     clearInterval(timeTop);
       //   }
       // }, 10);
+    },
+    showAlert() {
+      // Use sweetalert2
+      this.$swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: '複製成功',
+        showConfirmButton: false,
+        timer: 2000,
+        iconColor: '#236F6B',
+      });
     },
   },
   mounted() {
@@ -442,17 +473,18 @@ a {
 #popUp {
   position: fixed;
   max-width: 350px;
-  height: 200px;
+  height: 170px;
   margin-bottom: 100px;
-  background: rgba(236, 240, 241, 1);
+  background: rgba(236, 240, 241, 0.8);
   /*   border: 7px solid #fff; */
-  bottom: 0;
+  bottom: -5%;
   margin-left: 0;
   -webkit-transition: all 1s ease;
   -moz-transition: all 1s ease;
   -o-transition: all 1s ease;
   transition: all 1s ease;
   z-index: 1000;
+  border-radius: 0px 10px 10px 0;
 }
 #new span {
   background: #ee847d;
