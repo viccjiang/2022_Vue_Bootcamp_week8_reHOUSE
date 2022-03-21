@@ -409,7 +409,7 @@ export default {
     this.toTop();
     $(document).scroll(() => {
       const scroll = $(this).scrollTop();
-      if (scroll >= 150) {
+      if (scroll > 150) {
         $('#popUp').css('margin-left', '-425px');
         $('#plus').css('margin-left', '0px');
       } else {
