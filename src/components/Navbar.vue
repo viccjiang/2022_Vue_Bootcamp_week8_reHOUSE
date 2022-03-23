@@ -31,7 +31,7 @@ export default {
     showAlert() {
       // Use sweetalert2
       this.$swal.fire({
-        position: 'top-end',
+        position: 'center',
         icon: 'success',
         title: '您已登出',
         showConfirmButton: false,
