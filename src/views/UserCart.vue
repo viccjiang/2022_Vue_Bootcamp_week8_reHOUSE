@@ -43,10 +43,10 @@
     </div>
   </div>
   <div class="container">
-    <div class="row g-10 mb-5">
+    <div class="row g-0 mb-5">
       <!-- 購物車列表 -->
       <!-- 左側 - 確認訂單數量價格... -->
-      <div class="col-12 col-lg-6  mt-15">
+      <div class="col-12 col-lg-7  mt-15">
         <!-- <h3 class="bg-secondary text-light my-5 border p-3">Step1.確認購買</h3> -->
                 <p class="mt-4 ">確認訂購內容</p>
 
@@ -62,10 +62,11 @@
           <table class="table align-middle">
             <thead>
               <tr>
-                <th></th>
-                <th>品名</th>
-                <th style="width: 110px">數量</th>
-                <th>單價</th>
+                <th style="width: 5%"></th>
+                <th style="width: 10%">品項</th>
+                <th style="width: 10%">品名</th>
+                <th style="width: 15%">數量</th>
+                <th style="width: 10%">單價</th>
               </tr>
             </thead>
             <tbody>
@@ -80,6 +81,17 @@
                     >
                       <i class="bi bi-x"></i>
                     </button>
+                  </td>
+                  <td>
+                    <div
+                      style="
+                        width: 50px;
+                        height: 50px;
+                        background-size: cover;
+                        background-position: center;
+                      "
+                      :style="{ backgroundImage: `url(${item.product.imageUrl})` }"
+                    ></div>
                   </td>
                   <td>
                     {{ item.product.title }}
@@ -97,7 +109,7 @@
                         @change="updateCart(item)"
                         v-model.number="item.qty"
                       />
-                      <div class="input-group-text">/ {{ item.product.unit }}</div>
+                      <div class="input-group-text">{{ item.product.unit }}</div>
                     </div>
                   </td>
                   <td class="text-end">
@@ -111,16 +123,20 @@
             </tbody>
             <!-- <p>總共{{cartData.carts.length}} 筆項目 </p> -->
             <tfoot v-if="cartData.carts.length !== 0">
-              <button
-                type="button"
-                class="btn btn-outline-danger btn-sm mt-4 mb-4"
-                @click="removeCart()"
-              >
-                <!-- <i class="bi bi-trash"> </i> -->
-                清除<br>全部
-              </button>
+                  <tr>
+                    <td colspan="5" >
+                  <button
+                    type="button"
+                    class="btn btn-outline-danger btn-sm mt-4 mb-4"
+                    @click="removeCart()"
+                  >
+                    <!-- <i class="bi bi-trash"> </i> -->
+                    清除全部購物車
+                  </button>
+                    </td>
+                  </tr>
               <tr>
-                <td colspan="3" class="text-end">總計</td>
+                <td colspan="4" class="text-end">總計</td>
                 <td class="text-end">{{ $filters.currency(cartData.total) }}</td>
               </tr>
               <tr v-if="cartData.final_total !== cartData.total">
@@ -128,17 +144,21 @@
                 <td class="text-end text-success">{{ $filters.currency(cartData.final_total) }}</td>
               </tr>
             </tfoot>
-            <tfoot v-else><p class="text-danger">請前往產品列表選購</p></tfoot>
+            <tfoot v-else>
+              <tr>
+                <td colspan="5"> <p class="text-center text-danger">請前往產品列表選購</p></td>
+              </tr>
+             </tfoot>
           </table>
           <div v-if="cartData.carts.length !== 0" class="input-group mb-3 input-group-sm">
             <input
               type="text"
-              class="form-control"
+              class="form-control rounded-0"
               v-model="coupon_code"
               placeholder="請輸入優惠碼"
             />
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="button" @click="addCouponCode">
+              <button class="btn btn-soft rounded-0" type="button" @click="addCouponCode">
                 套用優惠碼
               </button>
             </div>
@@ -147,19 +167,19 @@
         </div>
       </div>
       <!-- 右側 - 送出表單 -->
-      <div class="col-12 col-lg-6 bg-light mt-0 mt-lg-15">
+      <div class="col-12 col-lg-5 bg-light mt-0 mt-lg-15 p-0 p-md-2 p-lg-5">
         <p class="mt-4 ">填寫訂購資訊</p>
       <!-- <h3 class="bg-secondary text-light my-5 border p-3 ">Step２.填寫資料</h3> -->
-        <div class="col mt-5">
+        <div class="col mt-5 ">
           <!-- <h3 class="bg-secondary text-light my-5 border p-3">填寫訂購資訊</h3> -->
           <Form ref="form" class="" v-slot="{ errors }" @submit="createOrder">
             <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
+              <label for="email" class="form-label"><span class="text-danger">*</span>Email</label>
               <Field
                 id="email"
                 name="email"
                 type="email"
-                class="form-control"
+                class="form-control rounded-0"
                 :class="{ 'is-invalid': errors['email'] }"
                 placeholder="請輸入 Email"
                 rules="email|required"
@@ -169,12 +189,12 @@
             </div>
 
             <div class="mb-3">
-              <label for="name" class="form-label">收件人姓名</label>
+              <label for="name" class="form-label"><span class="text-danger">*</span>收件人姓名</label>
               <Field
                 id="name"
                 name="姓名"
                 type="text"
-                class="form-control"
+                class="form-control rounded-0"
                 :class="{ 'is-invalid': errors['姓名'] }"
                 placeholder="請輸入姓名"
                 rules="required"
@@ -184,12 +204,12 @@
             </div>
 
             <div class="mb-3">
-              <label for="tel" class="form-label">收件人電話</label>
+              <label for="tel" class="form-label"><span class="text-danger">*</span>收件人電話</label>
               <Field
                 id="tel"
                 name="電話"
                 type="tel"
-                class="form-control"
+                class="form-control rounded-0"
                 :class="{ 'is-invalid': errors['電話'] }"
                 placeholder="請輸入電話"
                 rules="required"
@@ -199,12 +219,12 @@
             </div>
 
             <div class="mb-3">
-              <label for="address" class="form-label">收件人地址</label>
+              <label for="address" class="form-label"><span class="text-danger">*</span>收件人地址</label>
               <Field
                 id="address"
                 name="地址"
                 type="text"
-                class="form-control"
+                class="form-control rounded-0"
                 :class="{ 'is-invalid': errors['地址'] }"
                 placeholder="請輸入地址"
                 rules="required"
@@ -214,18 +234,18 @@
             </div>
 
             <div class="mb-3">
-              <label for="message" class="form-label">留言</label>
+              <label for="message" class="form-label ">備註</label>
               <textarea
                 name=""
                 id="message"
-                class="form-control"
+                class="form-control rounded-0"
                 cols="30"
                 rows="5"
                 v-model="form.message"
               ></textarea>
             </div>
             <div class="text-end my-4 d-grid">
-              <button class="btn btn-soft">送出訂單</button>
+              <button class="btn btn-soft rounded-0">送出訂單</button>
             </div>
           </Form>
         </div>
