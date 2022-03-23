@@ -1,7 +1,6 @@
 <template>
   <Loading :active="isLoading"></Loading>
-  <h2>單一產品</h2>
-  <div class="container mt-10">
+  <div class="container mt-10 mt-md-15">
     <div class="row align-items-center">
       <div class="col-md-7">
         <div
@@ -14,24 +13,6 @@
               <img :src="product.imageUrl" class="d-block w-100" alt="..." />
             </div>
           </div>
-          <a
-            class="carousel-control-prev"
-            href="#carouselExampleControls"
-            role="button"
-            data-slide="prev"
-          >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <!-- <span class="sr-only">Previous</span> -->
-          </a>
-          <a
-            class="carousel-control-next"
-            href="#carouselExampleControls"
-            role="button"
-            data-slide="next"
-          >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <!-- <span class="sr-only">Next</span> -->
-          </a>
         </div>
       </div>
       <div class="col-md-5">
@@ -98,65 +79,205 @@
             加到購物車
           </button>
           </div> -->
-           <div>
-              <div class="input-group">
-                <input type="number" class="form-control"
-                    min="1" v-model.number="qty">
-                    <!-- <select id="" class="form-select" v-model.number="product.qty"
+          <div>
+            <div class="input-group">
+              <input
+                type="number"
+                class="form-control"
+                min="1"
+                v-model.number="qty"
+              />
+              <!-- <select id="" class="form-select" v-model.number="product.qty"
                     @change="updateCartItem(product)">
                       <option :value="num" v-for="num in 20" :key="`${num}${product.id}`">
                           {{num}}
                       </option>
                     </select> -->
-                    <button type="button" class="btn btn-primary"
-                    @click="addCart(product)">
-                        加入購物車
-                    </button>
-                </div>
+              <button
+                type="button"
+                class="btn btn-soft border-0"
+                @click="addCart(product)"
+              >
+                加入購物車
+              </button>
             </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 my-5">
-      <!-- <div class="col-md-4">
-        <p>
-          {{ product.category }}
-        </p>
-      </div>
-      <div class="col-md-3">
-        <p class="text-muted">
-          {{ product.description }}
-        </p>
-      </div> -->
-      <div class="col" v-for="(image, id) in product.imagesUrl" :key="id">
-        <div class="card">
-          <img
-          v-if="image"
-          :src="image"
-          :alt="product.title"
-          class="images card-img-top"
-        />
-          <div class="card-body">
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
+    <!-- <swiper :slides-per-view="1" :space-between="50">
+      <swiper-slide v-for="(item, key)  in product.imagesUrl" :key="item.id">
+        <div
+          style="
+            height: 300px;
+            background-position: center center;
+            background-size: cover;
+          "
+          :style="{ backgroundImage: `url(${product.imagesUrl[key]})` }"
+        ></div>
+      </swiper-slide>
+   </swiper> -->
+  </div>
+  </div>
+  <div class="container">
+    <div class="row mt-5">
+    <!-- Nav tabs -->
+      <div class="col">
+        <ul
+          class="nav nav-pills mb-3 border p-3 category-bar rounded"
+          id="myTab"
+          role="tablist"
+        >
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link link-soft active"
+              id="home-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#home"
+              type="button"
+              role="tab"
+              aria-controls="home"
+              aria-selected="true"
+            >
+              產品介紹
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link link-soft"
+              id="profile-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#profile"
+              type="button"
+              role="tab"
+              aria-controls="profile"
+              aria-selected="false"
+            >
+              規格說明
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link link-soft"
+              id="messages-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#messages"
+              type="button"
+              role="tab"
+              aria-controls="messages"
+              aria-selected="false"
+            >
+              運送方式
+            </button>
+          </li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <!-- 產品 -->
+          <div
+            class="tab-pane active"
+            id="home"
+            role="tabpanel"
+            aria-labelledby="home-tab"
+          >
+            <div
+              class="row g-1 row-cols-1 row-cols-sm-2 row-cols-md-3 my-5"
+            >
+              <!-- <div class="col-md-4">
+                <p>
+                  {{ product.category }}
+                </p>
+              </div>
+              <div class="col-md-3">
+                <p class="text-muted">
+                  {{ product.description }}
+                </p>
+              </div> -->
+              <div
+                class="col"
+                v-for="(image, id) in product.imagesUrl"
+                :key="id"
+              >
+                <div class="">
+                  <img
+                    v-if="image"
+                    :src="image"
+                    :alt="product.title"
+                    class="images img-fluid"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 規格 -->
+          <div
+            class="tab-pane"
+            id="profile"
+            role="tabpanel"
+            aria-labelledby="profile-tab"
+          >
+            {{ product.category }}
+            {{ product.description }}
+            {{ product.content }}
+          </div>
+          <!-- 運送 -->
+          <div
+            class="tab-pane"
+            id="messages"
+            role="tabpanel"
+            aria-labelledby="messages-tab"
+          >
+            <div>
+              運送方式及費用說明
+              運送方式：
+              1.帳款確認後將儘快處理您的訂單。
+              2.配送方式：
+              ★宅配：統一速達(黑貓宅急便)/順豐快遞
+              出貨時間：週一～週五(不含週六日及國定例假日)
+              預計貨品到期日：出貨日+1天物流配運時間
+              ★超商取貨付款：7-11/全家
+              出貨時間：週一～週五(不含週六日及國定例假日)
+              預計貨品到期日：出貨日+2-3天超商轉運時間
+              (急用者請勿選擇超取，請選宅配喔！)
+              3.到貨當日，請務必確認有人可以收貨。
+              ※客人希望的配送時段都會備註在宅配單上， 可是會因為宅配站所每日配送的貨物多寡，以及送貨路線等因素，都會影響到配送到達的時間！
+              4.配送範圍限台灣本島各縣市(不含郵政信箱)。
+              5.如本店無法接受您的訂單，將於收到您的訂單後二個工作日內通知您。但法令另有規定者除外。
+
+              運費說明：
+              超商取貨付款：每筆訂單為新台幣 65元運費。
+              宅配到府：台灣本島每筆訂單為新台幣 80 元運費。
+              為長期回饋會員，單筆商品訂購金額滿 1,000 元以上，享免運費優惠。
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="container">
-  <p>你可能也會喜歡</p>
-  <ul>
-    <li v-for="item in randomProducts" :key="item">
-      {{item.title}}
-    </li>
-  </ul>
+  <div class="container mb-5">
+    <p>你可能也會喜歡</p>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+      <div v-for="item in randomProducts" :key="item" class="col">
+        <div class="card h-100">
+          <img :src="item.imageUrl" class="card-img-top h-100" alt="">
+          <div class="card-body">
+            <h5 class="card-title">{{ item.title }}</h5>
+            <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+            <a href="" class="btn btn-soft stretched-link"  @click.prevent="goProductPage(item.id)">查看更多</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <ul>
+      <li v-for="item in randomProducts" :key="item">
+        {{ item.title }}
+      </li>
+    </ul> -->
   </div>
 </template>
 
 <script>
+// import { Swiper, SwiperSlide } from 'swiper/vue/swiper-vue';
+// import 'swiper/swiper.scss'; // core Swiper
 import emitter from '../methods/emitter';
 
 // 相同產品取得隨機數
@@ -175,6 +296,10 @@ export default {
       qty: 1, // 畫面上的輸入欄位顯示的預設值
     };
   },
+  // components: {
+  //   Swiper,
+  //   SwiperSlide,
+  // },
   methods: {
     getProduct() {
       // $route 物件取值
@@ -200,6 +325,25 @@ export default {
         this.getLookLike();
       });
     },
+    // 前往可能會喜歡頁面
+    goProductPage(id) {
+      this.$router.push(`/product/${id}`);
+      // this.getLookLike();
+      this.isLoading = true;
+      this.$http(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/product/${id}`)
+        .then((res) => {
+          console.log('單一產品資訊 :', res);
+          this.isLoading = false;
+          this.product = res.data.product; // 賦值
+          this.randomProducts = []; // 轉到新頁面要先清空原本的
+          this.getLookLike();
+        })
+        .catch((err) => {
+          console.dir(err.response.data.message);
+        });
+      console.log(this.$router);
+      console.log(id);
+    },
     getLookLike() {
       const { category } = this.product;
       const filterProducts = this.products.filter((item) => item.category === category); // 取得相同品項
@@ -209,7 +353,8 @@ export default {
       const arrSet = new Set([]);
       console.log(arrSet.size); // 這是類陣列長度
       getRandomInt();
-      for (let index = 0; arrSet.size < maxSize; index + 1) { // arrSet.size 不能寫死數字
+      for (let index = 0; arrSet.size < maxSize; index + 1) {
+        // arrSet.size 不能寫死數字
         const num = getRandomInt(filterProducts.length); // 取得品項隨機數字
         arrSet.add(num);
         console.log(arrSet, num);
@@ -227,12 +372,14 @@ export default {
         qty: this.qty,
       };
       this.isLoading = true;
-      this.$http.post(url, { data: cart }).then((res) => {
-        this.isLoading = false;
-        this.$httpMessageState(res, '加入購物車');
-        console.log('購物車 :', res);
-        emitter.emit('update-cart'); // 更新購物車數量
-      })
+      this.$http
+        .post(url, { data: cart })
+        .then((res) => {
+          this.isLoading = false;
+          this.$httpMessageState(res, '加入購物車');
+          console.log('購物車 :', res);
+          emitter.emit('update-cart'); // 更新購物車數量
+        })
         .catch((error) => {
           this.isLoading = false;
           this.$httpMessageState(error.response, '加入購物車');
@@ -253,7 +400,8 @@ export default {
         product_id: item.id,
         qty: item.qty,
       };
-      this.$http.put(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${item.id}`, { data })
+      this.$http
+        .put(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${item.id}`, { data })
         .then((res) => {
           console.log(res);
           this.getCart();
@@ -262,6 +410,7 @@ export default {
   },
   mounted() {
     this.id = this.$route.params.id;
+    console.log(this.id);
     this.getProduct();
   },
 };
