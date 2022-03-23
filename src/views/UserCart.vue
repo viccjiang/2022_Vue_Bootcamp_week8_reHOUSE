@@ -4,7 +4,7 @@
   color="#236F6B">
 </Loading>
   <div class="container mt-15">
-    <h2 class="mb-5">購物車</h2>
+    <h2 class="mb-10 text-center text-soft">STEP.1 確認訂單</h2>
     <!-- <div class="row p-3">
       <ul class="steps row g-0 list-unstyled mb-4">
         <li class="col-4 border">
@@ -29,34 +29,36 @@
           <!-- <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div> -->
         </div>
         <button type="button" class="ms-5 position-absolute top-0 start-0 translate-middle btn btn-sm btn-soft rounded-pill"
-        style="width: 2rem; height:2rem;">
-        1</button>
+        style="width: 3rem; height:3rem;">
+        step 1</button>
         <button type="button" class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-secondary disabled rounded-pill"
-        style="width: 2rem; height:2rem;">
-        2</button>
+        style="width: 3rem; height:3rem;">
+        step 2</button>
         <button type="button" class="ms-n5 position-absolute top-0 start-100 translate-middle btn btn-sm btn-secondary disabled rounded-pill"
-        style="width: 2rem; height:2rem;">
-        3</button>
+        style="width: 3rem; height:3rem;">
+        step 3</button>
     </div>
     <!-- {{ cartData.carts }} -->
       </div>
     </div>
   </div>
   <div class="container">
-    <div class="row g-6">
+    <div class="row g-10 mb-5">
       <!-- 購物車列表 -->
       <!-- 左側 - 確認訂單數量價格... -->
-      <div class="col-12 col-md-6">
-        <h3 class="bg-secondary text-light my-5 border p-3">Step1.確認購買</h3>
-        <button
+      <div class="col-12 col-lg-6  mt-15">
+        <!-- <h3 class="bg-secondary text-light my-5 border p-3">Step1.確認購買</h3> -->
+                <p class="mt-4 ">確認訂購內容</p>
+
+        <div class="cartTable mt-5">
+        <!-- <button
           type="button"
-          class="btn btn-outline-danger btn-sm"
+          class="btn btn-outline-danger btn-sm mt-4 mb-4"
           @click="removeCart()"
         >
           <i class="bi bi-trash"> </i>
           清除全部購物車
-        </button>
-        <div class="cartTable">
+        </button> -->
           <table class="table align-middle">
             <thead>
               <tr>
@@ -108,7 +110,15 @@
               </template>
             </tbody>
             <!-- <p>總共{{cartData.carts.length}} 筆項目 </p> -->
-            <tfoot>
+            <tfoot v-if="cartData.carts.length !== 0">
+              <button
+                type="button"
+                class="btn btn-outline-danger btn-sm mt-4 mb-4"
+                @click="removeCart()"
+              >
+                <!-- <i class="bi bi-trash"> </i> -->
+                清除<br>全部
+              </button>
               <tr>
                 <td colspan="3" class="text-end">總計</td>
                 <td class="text-end">{{ $filters.currency(cartData.total) }}</td>
@@ -118,8 +128,9 @@
                 <td class="text-end text-success">{{ $filters.currency(cartData.final_total) }}</td>
               </tr>
             </tfoot>
+            <tfoot v-else><p class="text-danger">請前往產品列表選購</p></tfoot>
           </table>
-          <div class="input-group mb-3 input-group-sm">
+          <div v-if="cartData.carts.length !== 0" class="input-group mb-3 input-group-sm">
             <input
               type="text"
               class="form-control"
@@ -132,13 +143,15 @@
               </button>
             </div>
           </div>
+          <div v-else></div>
         </div>
       </div>
       <!-- 右側 - 送出表單 -->
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-lg-6 bg-light mt-0 mt-lg-15">
+        <p class="mt-4 ">填寫訂購資訊</p>
       <!-- <h3 class="bg-secondary text-light my-5 border p-3 ">Step２.填寫資料</h3> -->
-        <div class="col">
-          <h3 class="bg-secondary text-light my-5 border p-3">填寫訂購資訊</h3>
+        <div class="col mt-5">
+          <!-- <h3 class="bg-secondary text-light my-5 border p-3">填寫訂購資訊</h3> -->
           <Form ref="form" class="" v-slot="{ errors }" @submit="createOrder">
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
