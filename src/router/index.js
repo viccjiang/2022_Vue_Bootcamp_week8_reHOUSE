@@ -36,6 +36,11 @@ const routes = [
         name: 'check/:orderId',
         component: () => import('../views/UserCheckOrder.vue'),
       },
+      // {
+      //   path: 'favorite',
+      //   name: 'favorite',
+      //   component: () => import('../views/UserFavorite.vue'),
+      // },
     ],
   },
   {
