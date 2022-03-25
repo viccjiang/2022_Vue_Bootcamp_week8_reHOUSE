@@ -3,6 +3,21 @@
   loader="bars"
   color="#236F6B">
   </Loading>
+      <div class="card border-0 rounded-0 bg-dark text-white mb-5">
+    <img
+      class="filters"
+      style="
+        height: 400px;
+        background-image: url(https://images.unsplash.com/photo-1616627408664-00fa6151580c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
+        background-size: cover;
+        background-position: center bottom;
+        background-attachment: fixed;
+      "
+    />
+    <div class="card-img-overlay d-flex flex-column justify-content-center align-item-center">
+      <h1 class="card-title  text-center fw-bold" >產品列表</h1>
+    </div>
+  </div>
   <div class="container mt-10">
     <div class="row flex-column flex-md-row">
       <!-- 左側分類欄 -->
