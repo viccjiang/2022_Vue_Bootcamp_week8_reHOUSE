@@ -10,13 +10,14 @@
           background-position:center center;
           background-attachment: fixed
           "
-          ></div>
-          <div class="carousel-caption  d-md-block pb-10">
-            <h1 style=" text-shadow: black 0em 0em 0.1em " class="indexBannerText mb-3">
-              讓你的居家生活風格更加獨特
+          >
+          </div>
+          <div class="carousel-caption  d-md-block pb-5">
+            <h1 style=" text-shadow: black 0em 0em 0.1em " class="indexBannerText mb-3 ">
+              居家生活風格更加獨特
             </h1>
             <p style="text-shadow: black 0em 0em 0.1em" class="mb-4 fs-5 text">
-              進入美好生活，創造你的生活美學
+              美好生活，創造你的生活美學
             </p>
 
             <router-link to="/products">
@@ -24,6 +25,8 @@
                 SHOP NOW
               </button>
             </router-link>
+            <!-- arrow -->
+            <div class="arrow arrow_bounce d-flex justify-content-center align-item-center mb-5"></div>
           </div>
         </div>
       </div>
@@ -470,6 +473,36 @@ a {
   height: 0 auto;
   width: 100%;
 }
+
+.arrow{
+    text-align: center;
+    margin:30px auto;
+    width:0px;
+    height:0px;
+    overflow:hidden;
+    border-width:10px;
+    border-color:#FFF transparent transparent transparent;
+    border-style:solid dashed dashed dashed;
+}
+
+.arrow_bounce {
+  -moz-animation: bounce 2s infinite;
+  -webkit-animation: bounce 2s infinite;
+   animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
 #popUp {
   position: fixed;
   max-width: 350px;
