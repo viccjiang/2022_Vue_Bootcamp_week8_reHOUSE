@@ -1,23 +1,23 @@
 <template>
   <section>
-    <div id="carouselExampleCaptions" class="" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active ">
-          <div
-            class=""
-            style="height: 400px; background-image: url(https://images.unsplash.com/photo-1519643225200-94e79e383724?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1476&q=80);
-          background-size: cover;
-          background-position:center center;
-          background-attachment: fixed
-          "
-          ></div>
-        </div>
-      </div>
+    <div class="card border-0 rounded-0 bg-dark text-white mb-5">
+    <img
+      class="filters"
+      style="
+        height: 400px;
+        background-image: url(https://images.unsplash.com/photo-1519643225200-94e79e383724?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1476&q=80);
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
+      "
+    />
+    <div class="card-img-overlay d-flex flex-column justify-content-center align-item-center">
+      <h1 class="card-title  text-center fw-bold" >關於 <span class="brandlogos">re.</span><span class="brandlogo">HOUSE </span> </h1>
     </div>
+  </div>
 
     <div class="about container">
       <div class="contentText text-center my-5">
-        <h1>關於 re.HOUSE</h1>
         <p>
           <br />
 
@@ -43,7 +43,7 @@
         </blockquote>
 
         <router-link to="/products">
-          <button type="button" class="btn btn-outline-warm rounded-pill mt-4 py-3 px-5">
+          <button type="button" class="btn btn-outline-soft rounded-pill mt-4 py-3 px-5">
             屬於你的美好生活指南
           </button>
         </router-link>
@@ -52,4 +52,8 @@
   </section>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+  .filters{
+    filter:brightness(.8);
+  }
+</style>
