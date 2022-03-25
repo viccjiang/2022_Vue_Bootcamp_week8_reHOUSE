@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
     <div class="container">
       <router-link class="navbar-brand brandlogo" to="/"><span class="brandlogos">re.</span>HOUSE </router-link>
       <button
@@ -23,6 +23,9 @@
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/products">產品列表</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/faq">常見問題</router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/cart">購物車</router-link>
