@@ -50,49 +50,7 @@
                 </div>
               </div>
             </div>
-            <div class="carousel-item">
-              <div class="row justify-content-center py-5">
-                <div class="col-md-6 text-center">
-                  <h3>Lorem ipsum.</h3>
-                  <p class="my-5">
-                    “Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                    tempor invidunt ut labore et dolore magna aliquyam erat.”
-                  </p>
-                  <p><small>—Lorem ipsum dolor sit amet.—</small></p>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="row justify-content-center py-5">
-                <div class="col-md-6 text-center">
-                  <h3>Lorem ipsum.</h3>
-                  <p class="my-5">
-                    “Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                    tempor invidunt ut labore et dolore magna aliquyam erat.”
-                  </p>
-                  <p><small>—Lorem ipsum dolor sit amet.—</small></p>
-                </div>
-              </div>
-            </div>
           </div>
-          <!-- <a
-            class="carousel-control-prev"
-            href="#carouselExampleControls"
-            role="button"
-            data-slide="prev"
-          >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a
-            class="carousel-control-next"
-            href="#carouselExampleControls"
-            role="button"
-            data-slide="next"
-          >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a> -->
         </div>
       </div>
     </div>
@@ -165,15 +123,15 @@
       </div>
     </div>
     <div class="container mb-0 mb-md-7">
-      <div class="row bg-light">
-        <div class="col-md-6 g-0">
+      <div class="row g-0 bg-light">
+        <div class="col-md-6 ">
           <img
             src="https://images.unsplash.com/photo-1589362281138-e3f7ebe47f1a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
             alt=""
             class="img-fluid"
           />
         </div>
-        <div class="col-md-4 m-auto text-center bg-light">
+        <div class="col-md-6 m-auto text-center bg-light">
           <h4 class="mt-4">嚴選家居</h4>
           <p class="text-secondary">
             收納櫃組、客廳家俱到寢具一應俱全。 <br />
@@ -181,8 +139,8 @@
           </p>
         </div>
       </div>
-      <div class="row bg-light flex-row-reverse justify-content-between ">
-        <div class="col-md-6 g-0">
+      <div class="row g-0 bg-light flex-row-reverse justify-content-between ">
+        <div class="col-md-6 ">
           <img
             src="https://images.unsplash.com/photo-1571570703598-39eb580a0329?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80"
             alt=""
@@ -197,8 +155,8 @@
           </p>
         </div>
       </div>
-      <div class="row bg-light">
-        <div class="col-md-6 g-0">
+      <div class="row g-0 bg-light">
+        <div class="col-md-6 ">
           <img
             src="https://images.unsplash.com/photo-1589362281138-e3f7ebe47f1a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
             alt=""
@@ -267,6 +225,7 @@
       </div>
     </div> -->
   </section>
+  <RandomProducts></RandomProducts>
   <div class="bg-soft text-white py-2 py-md-5">
   <div class="container px-6 px-md-9">
     <ul class="row list-unstyled mb-0 gx-md-9">
@@ -324,12 +283,13 @@
 <div class="footer">
     <div class="gotop btn border" v-show="gotop" @click="toTop"><i class="px-1 bi bi-chevron-up"></i></div>
 </div>
+
 </template>
 
 <script>
 /* global $ */
 // @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue';
+import RandomProducts from '@/components/RandomProducts.vue';
 // import '../../node_modules/aos/dist/aos.css';
 import 'aos/dist/aos.css';
 
@@ -350,9 +310,9 @@ const storageMethods = {
 
 export default {
   name: 'Home',
-  // components: {
-  //   HelloWorld,
-  // },
+  components: {
+    RandomProducts,
+  },
   data() {
     return {
       myFavorite: storageMethods.get() || [],
