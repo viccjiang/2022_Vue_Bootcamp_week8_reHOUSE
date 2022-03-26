@@ -41,11 +41,11 @@ const routes = [
         name: 'faq',
         component: () => import('../views/UserFaq.vue'),
       },
-      // {
-      //   path: 'favorite',
-      //   name: 'favorite',
-      //   component: () => import('../views/UserFavorite.vue'),
-      // },
+      {
+        path: 'favorite',
+        name: 'favorite',
+        component: () => import('../views/UserFavorite.vue'),
+      },
     ],
   },
   {

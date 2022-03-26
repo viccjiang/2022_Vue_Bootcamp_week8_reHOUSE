@@ -34,7 +34,7 @@
         <ul class="navbar-nav d-flex align-items-center flex-column flex-lg-row">
           <div>
             <!-- favorite -->
-            <router-link class="nav-link fs-5 position-relative text-secondary" to="/">
+            <router-link class="nav-link fs-5 position-relative text-secondary" to="/favorite">
               <i class="bi bi-heart"></i
             >
                           <div
