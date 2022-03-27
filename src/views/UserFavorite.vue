@@ -4,7 +4,7 @@
     <img
       class="filters"
       style="
-        height: 400px;
+        height: 200px;
         background-image: url(https://images.unsplash.com/photo-1616627408664-00fa6151580c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
         background-size: cover;
         background-position: center bottom;

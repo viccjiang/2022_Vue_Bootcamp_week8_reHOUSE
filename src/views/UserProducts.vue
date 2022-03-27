@@ -7,7 +7,7 @@
     <img
       class="filters"
       style="
-        height: 400px;
+        height: 200px;
         background-image: url(https://images.unsplash.com/photo-1616627408664-00fa6151580c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
         background-size: cover;
         background-position: center bottom;
@@ -18,14 +18,14 @@
       <h1 class="card-title  text-center fw-bold" >產品列表</h1>
     </div>
   </div>
-  <div class="container mt-10">
-    <div class="row flex-column flex-md-row">
-      <!-- 左側分類欄 -->
-      <div class="col-12 mt-4 flex-column flex-md-row">
-        <div class="list-group rounded-0 list-group-horizontal">
+  <div class="container mt-0 mt-md-3">
+    <div class="row flex-column flex-md-row ">
+      <!-- 分類欄 -->
+      <div class="subNav sticky-top col-12 mt-4 flex-column flex-md-row border-0">
+        <div class="list-group rounded-0 list-group-horizontal ">
            <a
             href="#"
-            class="list-group-item list-group-item-action"
+            class="list-group-item list-group-item-action rounded-0"
             @click.prevent="selectCategory = ''"
             >全部</a
           >
@@ -33,13 +33,13 @@
             href="#"
             v-for="item in categories"
             :key="item"
-            class="list-group-item list-group-item-action"
+            class="list-group-item list-group-item-action rounded-0"
             @click.prevent="selectCategory = item"
             >{{ item }}</a
           >
         </div>
       </div>
-      <!-- 右側產品列 -->
+      <!-- 產品列 -->
       <div class="col-12">
         <div class="row mt-4">
           <div class="col mb-4">
@@ -292,3 +292,12 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+  .subNav {
+  position: sticky;
+  top: 89px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  }
+</style>
