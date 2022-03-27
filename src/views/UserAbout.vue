@@ -4,11 +4,12 @@
     <img
       class="filters"
       style="
-        height: 400px;
-        background-image: url(https://images.unsplash.com/photo-1519643225200-94e79e383724?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1476&q=80);
+        height: 200px;
+        background-image: url(https://storage.googleapis.com/vue-course-api.appspot.com/jiangs2022vue3/1648375826670.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=Z8Sswky5%2B5Qs9zBOk353l6grws4lbOlVcclGQujb%2FluG%2FtdJ5cA03bSLskiSdsqQ9y4u9EzL%2FVzcf91ZsdrvCBzRP3Xtd6lQPRgkVuINBQh5%2BPhgtwAKIoMrZx46WcWsr8rmE7gScKmrnk5hGO8XwgJJyQXUHWrQv890wZje8wJkW%2BcrMkRkELlxnkvA1NYep0M0lPNGLjw9Nr%2B%2BaDLucpaaAR0wHg8FdtJaOesdeK%2F8et%2FIUWgkjNWNj2MQGX8u5Q0nh%2F2DvzIe7Evx0CR%2FedaCS%2BCNMPXgM5Y8ucCeMB110cYlO1eEkrl6MASJANN%2B3CVwiieirvmFPa4k3iVEUA%3D%3D);
         background-size: cover;
         background-position: center center;
         background-attachment: fixed;
+        object-fit: cover;
       "
     />
     <div class="card-img-overlay d-flex flex-column justify-content-center align-item-center">
