@@ -19,7 +19,10 @@
           </div>
           </div>
           <div class="card-body ">
-            <h5 class="btn card-title stretched-link p-0">{{item.title}}</h5>
+            <h5 class="btn card-title stretched-link p-0" @click="goRecommendPage(item.id)">{{item.title}}</h5>
+            <!-- <h5 class="btn card-title stretched-link p-0" >{{item.title}}</h5> -->
+                        <!-- <button class="btn btn-outline-secondary rounded-0 border " type="button"
+                        @click="getProduct(item.id)">查看更多</button> -->
           </div>
       </swiper-slide>
     </swiper>
@@ -67,6 +70,7 @@ export default {
       // $route 物件取值
       // $router 方法
       const { id } = this.$route.params; // 這裡要用解構 airbnb 規則
+      // console.log(id);
       this.isLoading = true;
       this.$http(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/product/${id}`)
         .then((res) => {
@@ -88,7 +92,7 @@ export default {
       });
     },
     // 前往可能會喜歡頁面
-    goProductPage(id) {
+    goRecommendPage(id) {
       this.$router.push(`/product/${id}`);
       // this.getLookLike();
       this.isLoading = true;

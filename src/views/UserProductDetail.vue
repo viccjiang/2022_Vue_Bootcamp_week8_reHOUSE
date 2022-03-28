@@ -376,7 +376,8 @@ export default {
         .post(url, { data: cart })
         .then((res) => {
           this.isLoading = false;
-          this.$httpMessageState(res, '加入購物車');
+          // this.$httpMessageState(res, '加入購物車');
+          this.showAlert();
           console.log('購物車 :', res);
           emitter.emit('update-cart'); // 更新購物車數量
         })
@@ -406,6 +407,17 @@ export default {
           console.log(res);
           this.getCart();
         });
+    },
+    showAlert() {
+      // Use sweetalert2
+      this.$swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: '已加入購物車',
+        showConfirmButton: false,
+        timer: 2000,
+        iconColor: '#236F6B',
+      });
     },
   },
   mounted() {

@@ -128,10 +128,9 @@
       </div>
     </div>
     <div class="container mb-5 ">
-      <div class="row bg-light g-0 ">
-        <div class="col-md-6 " data-aos="fade-right"
-     data-aos-offset="200"
-     data-aos-easing="ease-in-sine">
+      <div class="row bg-light g-0 " data-aos="fade-up"
+     data-aos-duration="1000">
+        <div class="col-md-6 " >
           <img
             src="https://storage.googleapis.com/vue-course-api.appspot.com/jiangs2022vue3/1648448430217.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=L9PIzGN6tRxpzyU%2BlgPeVauQ7TFGanw2gAos0abkYcIxICaAeRPtB2pMDgp%2BACQV32UQyarS2Hud2CzcySEj2vEhpTmhy9cJxv%2BPc9Qjme3aSfPOCK0%2FAoE9uVPcwKDmASylr79E4Cmy%2BArfBwzJNQZ73fPTx22E1Lp4l3OV0IfvqLjIWmdj%2B5fRT70hFDY%2B65%2BxfWghajjFk25bufEQrltgIwHyT7pCETAYyMCV1vThp4NemQ7byQQsfoLMPswBN0dEqm%2BXi2rrtkzYS6LVB3CeKpYIQZ56DuMHMgwM%2FRP5RAqS%2FaUA3tGUXP1BOLiSF5YLg89fEAusAgGdwG3g4g%3D%3D"
             alt=""
@@ -146,10 +145,9 @@
           </p>
         </div>
       </div>
-      <div class="row g-0 bg-light flex-row-reverse justify-content-between ">
-        <div class="col-md-6 " data-aos="fade-left"
-     data-aos-offset="200"
-     data-aos-easing="ease-in-sine">
+      <div class="row g-0 bg-light flex-row-reverse justify-content-between " data-aos="fade-up"
+     data-aos-duration="1000">
+        <div class="col-md-6 " >
           <img
             src="https://storage.googleapis.com/vue-course-api.appspot.com/jiangs2022vue3/1648448385536.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=d%2F3AN0C9XHROnZXFNMgHyNV1B%2FoJchqWVJKLpCIFZMVt09wsQOzfai6AtUw%2F%2FR2JpA4Cbc3To1rUYB7hJ%2FfBEFLnHTUr6yWsmYc9JpPxmmOE71T8QsMJ6IV5a2%2FPX%2Fv%2BO0tQs3k3lJFvsJLXnKEjk1gNlzGkrSOpqt0pdhrcHyH2ILP2g1Nfe3MrtKfRa99GkE0Epl0p8CLUWywx9FS5aVWaja8vpYazPP4yxpPCvi%2BLcM99PyCXLUKGyckaD3cpLmd4J1yYE4RPH13HR4XCZkQAJPWyeY4sfygiofwnugnXRjWbXdNEEkGrFCEtSEUd9JLZLo%2F56RboKHC41scCjA%3D%3D"
             alt=""

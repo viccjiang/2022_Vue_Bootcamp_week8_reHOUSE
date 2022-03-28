@@ -263,8 +263,20 @@ export default {
       };
       this.$http.post(url, { data: cart }).then((res) => {
         this.status.loadingItem = '';
+        this.showAlert();
         console.log(res);
         emitter.emit('update-cart'); // 更新購物車數量
+      });
+    },
+    showAlert() {
+      // Use sweetalert2
+      this.$swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: '已加入購物車',
+        showConfirmButton: false,
+        timer: 2000,
+        iconColor: '#236F6B',
       });
     },
   },
