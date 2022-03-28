@@ -3,7 +3,7 @@
   <!-- :slides-per-view="3" :space-between="50" -->
   <div class="container mb-5">
     <h3 class="text-center">WE RECOMMEND</h3>
-    <h4 class="text-center mb-5">推薦商品</h4>
+    <h4 class="text-center mb-5 border-bottom pb-3">推薦商品</h4>
     <swiper  :breakpoints="breakpoints">
       <swiper-slide class="card border-0" v-for="item in products" :key="item.id">
         <div

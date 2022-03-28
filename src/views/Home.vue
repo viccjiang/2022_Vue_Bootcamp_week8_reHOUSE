@@ -56,7 +56,7 @@
     </div>
     <div class="container">
     <h3 class="text-center">TOP POPULAR</h3>
-    <h4 class="text-center mb-4">精選商品</h4>
+    <h4 class="text-center mb-4 border-bottom pb-3">精選商品</h4>
       <div class="row mt-0 mt-md-5">
         <div class="col-md-4 mt-4 mt-md-0">
           <div class="card border-0 mb-4 mt-md-0">
@@ -157,7 +157,7 @@
           </p>
         </div>
       </div>
-      <div class="row g-0 bg-light">
+      <!-- <div class="row g-0 bg-light">
         <div class="col-md-6 ">
           <img
             src="https://images.unsplash.com/photo-1589362281138-e3f7ebe47f1a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
@@ -172,7 +172,7 @@
             WFH居家必備，打造屬於自己的角落。
           </p>
         </div>
-      </div>
+      </div> -->
     </div>
     <!-- sub -->
     <!-- <div class="bg-light py-4">
