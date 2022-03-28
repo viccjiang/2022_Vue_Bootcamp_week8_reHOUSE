@@ -181,11 +181,11 @@ export default {
 <style lang="scss">
   .box{
 /*   border:1px solid #000; */
-  font-size: 20px;
-  font-weight: 700;
-  width:80px;
+  font-size: 16px;
+  // font-weight: 700;
+  width:60px;
   height:auto;
-  left:30px;
+  left:0px;
   justify-content: center;
   text-align:center;
   padding:10px;
