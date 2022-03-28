@@ -73,7 +73,7 @@
                     ></div>
                   </a>
                   <!-- <img :src="item.imageUrl" class="card-img-top" alt="..." /> -->
-                  <div class="card-body">
+                  <div class="card-body ">
                     <span class="badge bg-secondary text-light mb-2">{{
                       item.category
                     }}</span>
@@ -137,7 +137,7 @@
                       </button>
                     </div> -->
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                      <button class="btn btn-outline-secondary rounded-0 border" type="button"
+                      <button class="btn btn-outline-secondary rounded-0 border " type="button"
                         @click="getProduct(item.id)">查看更多</button>
                       <button class="btn btn-soft text-light rounded-0 border-0 me-md-2" type="button"
                         :disabled="this.status.loadingItem === item.id"

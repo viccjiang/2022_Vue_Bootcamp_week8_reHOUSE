@@ -31,7 +31,7 @@
         </div>
       </div>
     </div>
-    <div class="bg-light p-4 ">
+    <div class="bg-light p-4 mb-5 ">
       <div class="container">
         <div id="carouselExampleControls" class="slide" data-ride="carousel">
           <div class="carousel-inner">
@@ -55,6 +55,8 @@
       </div>
     </div>
     <div class="container">
+    <h3 class="text-center">TOP POPULAR</h3>
+    <h4 class="text-center mb-4">精選商品</h4>
       <div class="row mt-0 mt-md-5">
         <div class="col-md-4 mt-4 mt-md-0">
           <div class="card border-0 mb-4 mt-md-0">
@@ -122,7 +124,7 @@
         </div>
       </div>
     </div>
-    <div class="container mb-0 mb-md-7">
+    <div class="container mb-5">
       <div class="row g-0 bg-light">
         <div class="col-md-6 ">
           <img
@@ -225,7 +227,8 @@
       </div>
     </div> -->
   </section>
-  <RandomProducts></RandomProducts>
+  <!-- <RandomProducts></RandomProducts> -->
+  <RecommendSwiper></RecommendSwiper>
   <div class="bg-soft text-white py-2 py-md-5">
   <div class="container px-6 px-md-9">
     <ul class="row list-unstyled mb-0 gx-md-9">
@@ -289,7 +292,8 @@
 <script>
 /* global $ */
 // @ is an alias to /src
-import RandomProducts from '@/components/RandomProducts.vue';
+// import RandomProducts from '@/components/RandomProducts.vue';
+import RecommendSwiper from '@/components/RecommendSwiper.vue';
 // import '../../node_modules/aos/dist/aos.css';
 import 'aos/dist/aos.css';
 
@@ -311,7 +315,8 @@ const storageMethods = {
 export default {
   name: 'Home',
   components: {
-    RandomProducts,
+    // RandomProducts,
+    RecommendSwiper,
   },
   data() {
     return {
