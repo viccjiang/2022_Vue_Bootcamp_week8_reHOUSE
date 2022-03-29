@@ -5,7 +5,7 @@
     <h3 class="text-center">WE RECOMMEND</h3>
     <h4 class="text-center mb-5 border-bottom pb-3">推薦商品</h4>
     <swiper  :breakpoints="breakpoints">
-      <swiper-slide class="card border-0" v-for="item in products" :key="item.id">
+      <swiper-slide class="card border-0" v-for="item in randomSelects" :key="item.id">
         <div
           class="position-relative"
           style="
@@ -114,7 +114,7 @@ export default {
       // const { category } = this.product;
       // const filterProducts = this.products.filter((item) => item.category === category); // 取得相同品項
       // console.log('filterProducts:', filterProducts);
-      const maxSize = this.products.length < 3 ? this.products.length : 3;
+      const maxSize = this.products.length < 5 ? this.products.length : 5;
       // 先新增一個類陣列，所以陣列的方法基本上不太能用
       const arrSet = new Set([]);
       console.log(arrSet.size); // 這是類陣列長度
