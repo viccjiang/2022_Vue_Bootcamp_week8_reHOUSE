@@ -3,7 +3,7 @@
   loader="bars"
   color="#236F6B">
 </Loading>
-  <div class="container mt-15">
+  <div class="container mt-5">
     <h2 class="mb-10 text-center text-soft">STEP.1 確認訂單</h2>
     <!-- <div class="row p-3">
       <ul class="steps row g-0 list-unstyled mb-4">
@@ -46,10 +46,9 @@
     <div class="row g-0 mb-5">
       <!-- 購物車列表 -->
       <!-- 左側 - 確認訂單數量價格... -->
-      <div class="col-12 col-lg-7  mt-15">
+      <div class="col-12 col-lg-7 me-md-auto">
         <!-- <h3 class="bg-secondary text-light my-5 border p-3">Step1.確認購買</h3> -->
-                <p class="mt-4 ">確認訂購內容</p>
-
+        <p class="mt-4 ">確認訂單內容</p>
         <div class="cartTable mt-5">
         <!-- <button
           type="button"
@@ -167,8 +166,8 @@
         </div>
       </div>
       <!-- 右側 - 送出表單 -->
-      <div class="col-12 col-lg-5 bg-light mt-0 mt-lg-15 p-0 p-md-2 p-lg-5">
-        <p class="mt-4 ">填寫訂購資訊</p>
+      <div class="col-12 col-lg-4 bg-light mt-0 mt-lg-10 p-0 p-md-2 p-lg-5">
+        <p class="">填寫訂購資訊</p>
       <!-- <h3 class="bg-secondary text-light my-5 border p-3 ">Step２.填寫資料</h3> -->
         <div class="col mt-5 ">
           <!-- <h3 class="bg-secondary text-light my-5 border p-3">填寫訂購資訊</h3> -->
