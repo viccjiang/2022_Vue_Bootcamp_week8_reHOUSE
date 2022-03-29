@@ -3,7 +3,7 @@
   loader="bars"
   color="#236F6B">
   </Loading>
-      <div class="card border-0 rounded-0 bg-dark text-white mb-5">
+      <div class="card border-0 rounded-0 bg-dark text-white">
     <img
       class="filters"
       style="
@@ -55,8 +55,8 @@
                     rounded-0
                     "
                   >
-                    <i v-if="myFavorite.includes(item.id)" class="fs-5 bi bi-heart-fill position-absolute top-00 end-0 me-1 mt-1 text-danger"></i>
-                    <i v-else class="fs-5 bi bi-heart position-absolute top-00 end-0 me-1 mt-1 text-danger"></i>
+                    <i v-if="myFavorite.includes(item.id)" class="fs-4 bi-suit-heart-fill position-absolute top-0 end-0 me-2 mt-1 text-danger"></i>
+                    <i v-else class="fs-4 bi bi-suit-heart position-absolute top-0 end-0 me-2 mt-1 text-white "></i>
                   </a>
                   <a
                     href="#"
@@ -74,72 +74,33 @@
                   </a>
                   <!-- <img :src="item.imageUrl" class="card-img-top" alt="..." /> -->
                   <div class="card-body ">
-                    <span class="badge bg-secondary text-light mb-2">{{
+                    <div class="d-flex mb-4">
+                      <p class="badge bg-soft text-center text-light">{{
                       item.category
-                    }}</span>
-                    <h5 class="card-title">{{ item.title }}</h5>
-                    <h6 class="h6 text-secondary">
+                    }}</p>
+                    <h5 class="card-title mb-3">{{ item.title }}</h5>
+                    <!-- <h6 class="h6 text-secondary">
                       {{ item.description }}
-                    </h6>
-
-                    <div class="h5 list-inline-item" v-if="!item.price">
-                      {{ item.origin_price }} 元
+                    </h6> -->
                     </div>
-                    <del
-                      class="h6 list-inline-item text-secondary mt-4"
-                      v-if="item.price"
-                      >原價 NT$
-                      {{ $filters.currency(item.origin_price) }} 元</del
-                    >
-                    <div class="h5 text-danger mb-3" v-if="item.price">
-                      NT$ {{ $filters.currency(item.price) }} 元
+                    <div class="mb-3 d-flex flex-column justify-content-end align-items-end">
+                      <div class="h5 list-inline-item" v-if="!item.price">
+                        {{ item.origin_price }} 元
+                      </div>
+                      <del
+                        class="fs-7 list-inline-item text-secondary"
+                        v-if="item.price"
+                        >原價 NT$
+                        {{ $filters.currency(item.origin_price) }} 元</del
+                      >
+                      <div class="fs-4 text-danger" v-if="item.price">
+                        NT$ {{ $filters.currency(item.price) }} 元
+                      </div>
                     </div>
-                    <!-- 按鈕 -->
-                    <!-- <div class="d-grid gap-2 col-12 mx-auto"> -->
-                      <!-- 加入購物車 -->
-                      <!-- <button
-                        type="button"
-                        class="btn btn-outline-secondary rounded-0 border"
-                        :disabled="this.status.loadingItem === item.id"
-                        @click="addCart(item.id)"
-                      >
-                        <div
-                          v-if="this.status.loadingItem === item.id"
-                          class="spinner-border text-danger spinner-border-sm"
-                          role="status"
-                        >
-                          <span class="visually-hidden">Loading...</span>
-                        </div>
-                        加到購物車
-                      </button> -->
-                      <!-- 我的最愛 -->
-                      <!-- <button
-                        type="button"
-                        @click="addMyFavorite(item)"
-                        :class="{ active: myFavorite.includes(item.id) }"
-                        class="
-                          btn
-                          d-block
-                          btn-outline-secondary
-                          rounded-0
-                          border
-                        "
-                      >
-                        加到我的最愛
-                      </button> -->
-                      <!-- 查看細節 -->
-                      <!-- <button
-                        type="button"
-                        class="btn btn-outline-secondary rounded-0 border"
-                        @click="getProduct(item.id)"
-                      >
-                        查看更多
-                      </button>
-                    </div> -->
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                      <button class="btn btn-outline-secondary rounded-0 border " type="button"
+                    <div class="d-grid d-md-flex justify-content-md-between">
+                      <button class="btn btn-outline-secondary rounded-0 border w-100" type="button"
                         @click="getProduct(item.id)">查看更多</button>
-                      <button class="btn btn-soft text-light rounded-0 border-0 me-md-2" type="button"
+                      <button class="btn btn-soft text-light rounded-0 border-0 w-100" type="button"
                         :disabled="this.status.loadingItem === item.id"
                         @click="addCart(item.id)"><div
                           v-if="this.status.loadingItem === item.id"
@@ -307,6 +268,7 @@ export default {
 
 <style lang="scss">
   .subNav {
+  z-index: 1000;
   position: sticky;
   top: 89px;
   flex-wrap: wrap;
