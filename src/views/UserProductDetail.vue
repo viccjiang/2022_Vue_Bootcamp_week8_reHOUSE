@@ -1,6 +1,6 @@
 <template>
   <Loading :active="isLoading"></Loading>
-  <div class="container mt-10 mt-md-15">
+  <div class="container mt-3 mt-md-5">
     <div class="row align-items-center">
       <div class="col-md-7">
         <div
@@ -10,7 +10,12 @@
         >
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img :src="product.imageUrl" class="d-block w-100" alt="..." />
+              <img :src="product.imageUrl" class="d-block w-100" style="
+            height: 500px;
+            background-position: center center;
+            background-size: cover;
+            object-fit:cover;
+          " alt="..." />
             </div>
           </div>
         </div>
@@ -80,7 +85,7 @@
           </button>
           </div> -->
           <div>
-            <div class="input-group">
+            <div class="input-group mb-3">
               <input
                 type="number"
                 class="form-control"
@@ -103,6 +108,21 @@
             </div>
           </div>
         </div>
+        <ul class="list-unstyled">
+            <li>
+              本商品為「訂製款」。付款後，從開始製作到寄出商品為 15 個工作天。（不包含假日）
+            </li>
+          </ul>
+          <hr>
+          <ul class="list-unstyled text-danger">
+            <li>
+              此商品可領取折扣碼
+            </li>
+            <li>
+              實際優惠折抵以購物車內的金額為準
+            </li>
+          </ul>
+         <hr>
       </div>
     <!-- <swiper :slides-per-view="1" :space-between="50">
       <swiper-slide v-for="(item, key)  in product.imagesUrl" :key="item.id">
@@ -119,7 +139,7 @@
   </div>
   </div>
   <div class="container">
-    <div class="row mt-5">
+    <div class="row mt-5 mb-5">
     <!-- Nav tabs -->
       <div class="col">
         <ul
@@ -138,7 +158,7 @@
               aria-controls="home"
               aria-selected="true"
             >
-              產品介紹
+              產品細節
             </button>
           </li>
           <li class="nav-item" role="presentation">
@@ -180,7 +200,7 @@
             aria-labelledby="home-tab"
           >
             <div
-              class="row g-1 row-cols-1 row-cols-sm-2 row-cols-md-3 my-5"
+              class="row g-1 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 my-5"
             >
               <!-- <div class="col-md-4">
                 <p>
@@ -199,6 +219,12 @@
               >
                 <div class="">
                   <img
+                  style="
+                        height: 200px;
+                        background-size: cover;
+                        background-position: center;
+                        object-fit:cover;
+                      "
                     v-if="image"
                     :src="image"
                     :alt="product.title"
@@ -215,10 +241,41 @@
             role="tabpanel"
             aria-labelledby="profile-tab"
           >
-            {{ product.category }}
-            {{ product.description }}
-            {{ product.content }}
           </div>
+              <div class="accordion accordion-flush" id="accordionFlushExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="flush-heading1">
+                    <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse1" aria-expanded="false" aria-controls="flush-collapse1">
+                      分類
+                    </button>
+                  </h2>
+                  <div id="flush-collapse1" class="accordion-collapse collapse show" aria-labelledby="flush-heading1" >
+                    <div class="accordion-body">{{ product.category }}</div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="flush-heading2">
+                    <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse2" aria-expanded="false" aria-controls="flush-collapse2">
+                      產品說明
+                    </button>
+                  </h2>
+                  <div id="flush-collapse2" class="accordion-collapse collapse show" aria-labelledby="flush-heading2" >
+                    <div class="accordion-body">
+                      {{ product.description }}
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="flush-heading3">
+                    <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse3" aria-expanded="false" aria-controls="flush-collapse3">
+                      規格說明
+                    </button>
+                  </h2>
+                  <div id="flush-collapse3" class="accordion-collapse collapse show" aria-labelledby="flush-heading3" >
+                    <div class="accordion-body">{{ product.content }}</div>
+                  </div>
+                </div>
+              </div>
           <!-- 運送 -->
           <div
             class="tab-pane"
@@ -227,26 +284,78 @@
             aria-labelledby="messages-tab"
           >
             <div>
-              運送方式及費用說明
-              運送方式：
-              1.帳款確認後將儘快處理您的訂單。
-              2.配送方式：
-              ★宅配：統一速達(黑貓宅急便)/順豐快遞
-              出貨時間：週一～週五(不含週六日及國定例假日)
-              預計貨品到期日：出貨日+1天物流配運時間
-              ★超商取貨付款：7-11/全家
-              出貨時間：週一～週五(不含週六日及國定例假日)
-              預計貨品到期日：出貨日+2-3天超商轉運時間
-              (急用者請勿選擇超取，請選宅配喔！)
-              3.到貨當日，請務必確認有人可以收貨。
-              ※客人希望的配送時段都會備註在宅配單上， 可是會因為宅配站所每日配送的貨物多寡，以及送貨路線等因素，都會影響到配送到達的時間！
-              4.配送範圍限台灣本島各縣市(不含郵政信箱)。
-              5.如本店無法接受您的訂單，將於收到您的訂單後二個工作日內通知您。但法令另有規定者除外。
-
-              運費說明：
-              超商取貨付款：每筆訂單為新台幣 65元運費。
-              宅配到府：台灣本島每筆訂單為新台幣 80 元運費。
-              為長期回饋會員，單筆商品訂購金額滿 1,000 元以上，享免運費優惠。
+              <div class="accordion accordion-flush" id="accordionFlushExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                      運送方式
+                    </button>
+                  </h2>
+                  <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne" >
+                    <div class="accordion-body">帳款確認後將儘快處理您的訂單。</div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                      配送方式
+                    </button>
+                  </h2>
+                  <div id="flush-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="flush-headingTwo" >
+                    <div class="accordion-body">
+                      <ul class="list-unstyled">
+                        <li>宅配</li>
+                        <li>統一速達(黑貓宅急便)/順豐快遞，
+                        出貨時間：週一～週五(不含週六日及國定例假日)</li>
+                        <li>超商取貨付款：7-11/全家</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="flush-headingThree">
+                    <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                      出貨時間
+                    </button>
+                  </h2>
+                  <div id="flush-collapseThree" class="accordion-collapse collapse show" aria-labelledby="flush-headingThree" >
+                    <div class="accordion-body">出貨時間：週一～週五(不含週六日及國定例假日)</div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="flush-heading4">
+                    <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse4" aria-expanded="false" aria-controls="flush-collapse4">
+                      運費說明
+                    </button>
+                  </h2>
+                  <div id="flush-collapse4" class="accordion-collapse collapse show" aria-labelledby="flush-heading4" >
+                    <div class="accordion-body">
+                      <ul class="list-unstyled">
+                        <li>超商取貨付款：每筆訂單為新台幣 65元運費。</li>
+                        <li>宅配到府：台灣本島每筆訂單為新台幣 80 元運費。</li>
+                        <li>為長期回饋會員，單筆商品訂購金額滿 1,000 元以上，享免運費優惠。</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="flush-heading5">
+                    <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse5" aria-expanded="false" aria-controls="flush-collapse5">
+                      其他事項
+                    </button>
+                  </h2>
+                  <div id="flush-collapse5" class="accordion-collapse collapse show" aria-labelledby="flush-heading5" >
+                    <div class="accordion-body">
+                      <ul class="list-unstyled">
+                        <li>到貨當日，請務必確認有人可以收貨。</li>
+                        <li>客人希望的配送時段都會備註在宅配單上， 可是會因為宅配站所每日配送的貨物多寡，以及送貨路線等因素，都會影響到配送到達的時間！</li>
+                        <li>配送範圍限台灣本島各縣市(不含郵政信箱)。</li>
+                        <li>如本店無法接受您的訂單，將於收到您的訂單後二個工作日內通知您。但法令另有規定者除外。</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -254,15 +363,20 @@
     </div>
   </div>
   <div class="container mb-5">
-    <p>你可能也會喜歡</p>
+    <p class="fs-3 fw-bold bg-soft py-2 text-white text-center rounded">你可能也會喜歡</p>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
       <div v-for="item in randomProducts" :key="item" class="col">
         <div class="card h-100">
-          <img :src="item.imageUrl" class="card-img-top h-100" alt="">
-          <div class="card-body">
+          <img style="
+                        height: 200px;
+                        background-size: cover;
+                        background-position: center;
+                        object-fit:cover;
+                      " :src="item.imageUrl" class="card-img-top" alt="">
+          <div class="card-body d-flex flex-column justify-content-between">
             <h5 class="card-title">{{ item.title }}</h5>
             <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-            <a href="" class="btn btn-soft stretched-link"  @click.prevent="goProductPage(item.id)">查看更多</a>
+            <a href="" class="btn btn-soft stretched-link d-flex flex-column text-center"  @click.prevent="goProductPage(item.id)">查看更多</a>
           </div>
         </div>
       </div>
