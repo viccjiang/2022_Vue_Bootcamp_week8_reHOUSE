@@ -1,7 +1,7 @@
 <template>
   <Loading :active="isLoading"></Loading>
   <div class="text-end mt-4">
-    <button class="btn btn-primary" type="button" @click="openModal(true)">
+    <button class="btn btn-soft" type="button" @click="openModal(true)">
       建立新的產品
     </button>
   </div>
@@ -30,7 +30,7 @@
           <div class="btn-group">
             <button
               type="button"
-              class="btn btn-outline-primary btn-sm"
+              class="btn btn-outline-soft btn-sm"
               @click="openModal(false, item)"
             >
               編輯
