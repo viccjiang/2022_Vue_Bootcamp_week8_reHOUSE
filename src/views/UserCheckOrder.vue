@@ -1,6 +1,6 @@
 <template>
   <Loading :active="isLoading"></Loading>
-    <div class="container mt-15">
+    <div class="container mt-5">
     <h2 v-if="!order.is_paid" class="mb-10 text-center text-soft">STEP.2 建立訂單</h2>
     <h2 v-else class="mb-10 text-center text-soft">STEP.3 完成訂單</h2>
 
@@ -44,7 +44,7 @@
       </div>
     </div>
   </div>
-  <div class="container mt-15">
+  <div class="container mt-5">
     <div class="mb-5 row flex-column flex-md-row justify-content-center">
       <div class="col-12 col-md-6">
         <form class="col" @submit.prevent="payOrder">
