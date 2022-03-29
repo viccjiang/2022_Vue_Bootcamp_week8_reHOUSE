@@ -10,7 +10,7 @@
   >
     <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content border-0">
-        <div class="modal-header bg-primary text-white">
+        <div class="modal-header bg-soft text-white">
           <h5 id="productModalLabel" class="modal-title">
             <!-- modal 依照傳進來的值做標題切換 -->
             <span v-if="isNew">新增產品</span>
@@ -83,7 +83,7 @@
                 <div v-if="!tempProduct.imagesUrl.length ||
                   tempProduct.imagesUrl[tempProduct.imagesUrl.length - 1]">
                   <!-- 陣列新增 -->
-                  <button class="btn btn-outline-primary btn-sm d-block w-100"
+                  <button class="btn btn-outline-soft btn-sm d-block w-100"
                     @click="tempProduct.imagesUrl.push('')">
                     新增圖片
                   </button>
@@ -204,7 +204,7 @@
           </button>
           <button
             type="button"
-            class="btn btn-primary"
+            class="btn btn-soft"
             @click="$emit('update-product', tempProduct)"
           >
             確認
